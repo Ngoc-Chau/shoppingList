@@ -1,0 +1,34 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/variables';
+
+$font-family-base: 'Roboto',sans-serif, "Segoe UI", "GeezaPro", "DejaVu Serif", "-apple-system", "BlinkMacSystemFont";
+$font-size-base: 0.875rem;
+$body-bg: #e9ecef;
+
+$chau: black;
+$dao: pink;
+
+$base-main-colors: (
+  "chau": $chau,
+  "dao": $dao,
+);
+
+$colors: map-merge($colors, $base-main-colors);
+// merge theme color
+$theme-colors: map-merge($theme-colors, $colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+
+// merge bg color
+$utilities-bg: map-merge($utilities-bg, $colors);
+$utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");
+
+// merge color
+
+$utilities-text: map-merge($utilities-colors, $colors);
+$utilities-text-colors: map-loop($utilities-text, rgba-css-var, "$key", "text");
+
+// grid
+// $grid-columns: 24;
+$transition: ease 200ms all;
+

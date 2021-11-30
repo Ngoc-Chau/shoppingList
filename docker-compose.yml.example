@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    container_name: trainingapp
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - training_net
+
+  db:
+    image: mysql:5.7
+    container_name: trainingdb
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker/mysql:/etc/mysql/conf.d
+    ports:
+      - ${MYSQL_PORT}:3306
+    networks:
+      - training_net
+
+  nginx:
+    image: nginx:alpine
+    container_name: trainingnginx
+    restart: unless-stopped
+    ports:
+      - ${HTTP_PORT}:80
+    links:
+      - app
+      - db
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - training_net
+
+networks:
+  training_net:
+    driver: bridge
