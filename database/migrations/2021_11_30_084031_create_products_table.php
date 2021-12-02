@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('title');
             $table->string('content');
+            $table->integer('completed');
             $table->timestamps();
         });
         Schema::table('products', function (Blueprint $table) {

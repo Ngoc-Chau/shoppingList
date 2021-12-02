@@ -15,7 +15,13 @@ class AuthController extends Controller
     public function login(){
         return view('auth.login');
     }
+    public function postLogin(Request $request){
+        return view('auth.login');
+    }
     public function register(){
+        return view('auth.register');
+    }
+    public function postRegister(){
         return view('auth.register');
     }
 }
