@@ -14,6 +14,9 @@
 
 @section('content')
     <div class="py-4 text-center">
+        @if(Session::has('welcome'))
+            <p style="color:red;">{{ Session::get('welcome') }}</p>
+        @endif
         <h1>SHOPPING LIST</h1>
     </div>
 
@@ -41,9 +44,6 @@
     
     <form action="{{ route('shopping.deleteAll') }}" method="get">
         @csrf
-        @if(Session::has('msg'))
-        <p style="color:red;">{{ Session::get('msg') }}</p>
-        @endif
         <div class="table">
             <table class="table">
                 <tr>
