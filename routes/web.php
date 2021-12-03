@@ -20,6 +20,11 @@ Route::namespace('Auth')->group(function(){
     Route::post('/login', 'AuthController@postLogin')->name('auth.login');
     Route::get('/register', 'AuthController@register')->name('auth.register');
     Route::post('/register', 'AuthController@postRegister')->name('auth.register');
+    Route::get('/logout', 'AuthController@logout')->name('auth.logout');
+
+    Route::get('/edit', 'AuthController@edit')->name('auth.edit');
+    Route::post('/update', 'AuthController@update')->name('auth.update');
+    Route::post('/resetPass', 'AuthController@resetPass')->name('auth.resetPass');
 });
 
 Route::get('/', 'ShoppingListController@index')->name('shopping.index');
