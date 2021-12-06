@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShoppingListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +36,14 @@ Route::get('/edit-{id}', 'ShoppingListController@edit')->name('shopping.edit');
 Route::post('/edit-{id}', 'ShoppingListController@postEdit')->name('shopping.edit');
 Route::get('/destroy', 'ShoppingListController@destroy')->name('shopping.destroy');
 Route::get('/deleteALl', 'ShoppingListController@deleteAll')->name('shopping.deleteAll');
+
+Route::get('/category',[CategoryController::class,'category_index'])->name('category_index');
+Route::post('/category_create',[CategoryController::class,'category_create'])->name('category_insert');
+Route::get('/category/delete/{idd}',[CategoryController::class,'destroy']);
+Route::post('/category/update',[CategoryController::class,'category_update'])->name('category_update');
+Route::get('/category/{id}',[ShoppingListController::class,'index_category']);
+Route::post('/category_complete',[CategoryController::class,'category_complete'])->name('category_complete');
+Route::get('/category_uncomplete/{id}',[CategoryController::class,'category_uncomplete']);
+
+
+
