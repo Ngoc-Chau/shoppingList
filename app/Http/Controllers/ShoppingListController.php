@@ -3,14 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+use App\Models\Product;
+
+
 
 class ShoppingListController extends Controller
 {
     public function index()
     {
-        return view('shopping.index');
+        $user = Auth::user();
+        $resul_category= Category::where('user_id',$user->id)->get();
+        $resul_product= Product::where('user_id',$user->id)->where('completed',0)->get();
+        $resul_product_complete= Product::where('user_id',$user->id)->where('completed',1)->get();
+        return view('shopping.index',['resul_category'=>$resul_category,
+                                        'resul_product'=>$resul_product,
+                                        'resul_product_complete'=>$resul_product_complete
+                                        ]);
     }
-
+    public function index_category($id)
+    {
+        $user = Auth::user();
+        $resul_category= Category::where('user_id',$user->id)->get();
+        $resul_product= Product::where('user_id',$user->id)->where('cat_id',$id)->where('completed',0)->get();
+        $resul_product_complete= Product::where('user_id',$user->id)->where('cat_id',$id)->where('completed',1)->get();
+        return view('category.category_index',['resul_category'=>$resul_category,
+                                                'resul_product'=>$resul_product,
+                                                'resul_product_complete'=>$resul_product_complete
+                                                ]);
+    }
+    
     public function create()
     {
         return view('shopping.create');
@@ -71,4 +94,9 @@ class ShoppingListController extends Controller
     {
         //
     }
+    public function deleteAll($id)
+    {
+        //
+    }
+    
 }

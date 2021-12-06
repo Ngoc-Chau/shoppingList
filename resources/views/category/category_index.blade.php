@@ -13,30 +13,29 @@
 @endpush
 
 @section('content')
-    <div class="py-4 text-center">
+
+<div class="py-4 text-center">
         @if(Session::has('welcome'))
             <p style="color:red;">{{ Session::get('welcome') }}</p>
         @endif
         <h1>SHOPPING LIST</h1>
     </div>
     {{session('er')}}
+    
     <div class="nav justify-content-center py-1 mb-4">
         <nav class="nav d-flex justify-content-between">
             <a class="btn btn-light" href="{{ route('category_index')}}">+</a>
-            @if(empty($resul_category))
             <a class="btn btn-light" href="{{ route('shopping.index') }}">Tất cả</a>
-            @else
-            @foreach($resul_category as $cate)
-                <a class="btn btn-light" href="{{ url('category')}}/{{$cate->id}}">{{$cate->name_cat}}</a>
-            @endforeach
-            @endif
+          @foreach($resul_category as $cate)
+          <a class="btn btn-light" href="{{ url('category')}}/{{$cate->id}}">{{$cate->name_cat}}</a>
+          @endforeach
         </nav>
     </div>
     
-            
+
     <form class="row justify-content-center">
         <div class="col-4">
-          <input type="search" class="form-control" id="search" placeholder="Nhập ..." >
+          <input type="search" class="form-control" id="search" placeholder="Nhập ...">
         </div>
         <div class="">
           <button type="submit" class="btn btn-secondary mb-3">Tìm kiếm</button>
@@ -48,7 +47,7 @@
         <div class="table">
             <table class="table">
                 <tr>
-                    <th width="30px"><input type="checkbox" id="checkall" name="item[]"></th>
+                    <th width="30px"><input type="checkbox" id="checkall" name="item[]" class="checkboxAll"></th>
                     <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Mô tả</th>
@@ -56,7 +55,7 @@
                 </tr>
                 @forelse($resul_product as $sp)
                 <tr>
-                        <td><input type="checkbox" id="checkall" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
+                        <td><input type="checkbox" id="item1" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
                         <td><img src="" alt="image">{{$sp->image}}</td>
                         <td>{{$sp->title}}</td>
                         <td>{{$sp->content}}</td>
@@ -82,7 +81,7 @@
             <table class="table">
                 @forelse($resul_product_complete as $sp)
                 <tr>
-                        <td width="30px"><input type="checkbox" id="item1" name="item[]" readonly="false" value="{{$sp->id}}" checked disabled="true"></td>
+                        <td width="30px"><input type="checkbox" id="item1" value="{{$sp->id}}" checked disabled="true"></td>
                         <td><img src="" alt="image">{{$sp->image}}</td>
                         <td style="text-decoration: line-through; color: #80868b!important;">{{$sp->title}}</td>
                         <td style="text-decoration: line-through; color: #80868b!important;">{{$sp->content}}</td>
@@ -94,19 +93,8 @@
                         <td colspan="4" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
                 </tr>
                 @endforelse
+                
+
             </table>
-    </div> 
-    <!-- <script>
-        $("#checkall").change(function(){
-            $(".checkboxItem").prop("checked",$(this).prop("checked"))
-        })
-        $(".checkboxItem").change(function(){
-            if($this).prop("checked"==false){
-                $("#checkall").prop("checked",false)
-            }
-            if($(".checkboxItem:checked").length==$(".checkboxItem").length){
-                $("#checkall").prop("checked",true)
-            }
-        })
-    </script>            -->
+    </div>
 @stop
