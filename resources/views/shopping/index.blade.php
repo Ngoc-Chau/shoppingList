@@ -46,8 +46,8 @@
         </div>
     </form>
     <div class="row justify-content-center">
-        @if(Session::has('welcome'))
-            <p style="color:red;">{{ Session::get('welcome') }}</p>
+        @if(Session::has('msg'))
+            <p style="color:red;">{{ Session::get('msg') }}</p>
         @endif
     </div>
 

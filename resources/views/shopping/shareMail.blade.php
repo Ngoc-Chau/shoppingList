@@ -32,7 +32,7 @@
 							<tr>
 								<th>Sản phẩm</th>
 								<th>Mô tả</th>
-								<th>Danh mục</th>
+								<th>Loại sản phẩm</th>
 							</tr>
 						</thead>
 
