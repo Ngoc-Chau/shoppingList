@@ -2,7 +2,7 @@
 
 @push('styles')
     <style>
-        .resetPass {
+        .changePass {
             top: 3em;
             position: fixed;
             z-index: 2;
@@ -54,18 +54,18 @@
         $(document).ready(function() {
             $("#checkbox").change(function() {
                 if ($(this).is(":checked")) {
-                    $('.resetPass').addClass('show')
+                    $('.changePass').addClass('show')
                     $('.background').addClass('show')
                 }
             });
             $('.close').click(function() {
-                $('.resetPass').removeClass('show')
+                $('.changePass').removeClass('show')
                 $('.background').removeClass('show')
             });
         });
 
         $().ready(function() {
-            $("#resetPassword").validate({
+            $("#changePassword").validate({
                 onfocusout: false,
                 onkeyup: false,
                 onclick: false,
@@ -146,12 +146,9 @@
     <div class="row justify-content-center">
         <div class="col-sm-6">
             <div class="background"></div>
-            <div class="resetPass">
-                <form id="resetPassword" class="change row" action="{{ route('auth.resetPass') }}" method="POST">
+            <div class="changePass">
+                <form id="changePassword" class="change row" action="{{ route('auth.changePass') }}" method="POST">
                     @csrf
-                    @error('password')
-                    <p class="col-12 mb-2" style="color:red;">{{ $message }}</p>
-                    @enderror
                     <div class="col-sm-12">
                         <a class="close" href="#"><i class="fa fa-close button"></i></a>
                     </div>
