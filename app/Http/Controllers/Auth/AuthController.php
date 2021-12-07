@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use PhpParser\Node\Stmt\Foreach_;
+use Whoops\Run;
+
 
 class AuthController extends Controller
 {
@@ -26,7 +27,6 @@ class AuthController extends Controller
         $data = $request->all();
         $login = Auth::attempt(['email' => $data['email'], 'password' =>$data['password']]);
         if($login){
-            $request->session()->put('LOGIN',true);
             return redirect()->route('shopping.index')->with('welcome', 'Chào mừng bạn đến với trình quản lý công việc của mình!');
         }else{
             return redirect()->route('auth.login')->with('msg', 'Sai tài khoản hoặc tên đăng nhập');
@@ -39,6 +39,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
     public function postRegister(RegisterUserRequest $request){
+        $login = $request->all();
         $data = $request->all();
         $users = User::all();
         foreach ($users as $user) {
@@ -50,7 +51,12 @@ class AuthController extends Controller
         $user = new User;
         $data = $user->fill($data)->save();
         if($data){
-            return redirect()->route('shopping.index')->with('welcome', 'Chào mừng bạn đến với trình quản lý công việc của mình!');
+            $login = Auth::attempt(['email' => $login['email'], 'password' =>$login['password']]);
+            if($login){
+                return redirect()->route('shopping.index')->with('welcome', 'Chào mừng bạn đến với trình quản lý công việc của mình!');
+            }else{
+                return redirect()->route('auth.login')->with('msg', 'Sai tài khoản hoặc tên đăng nhập');
+            }
         }else{
             return redirect()->route('auth.register')->with('msg', 'Mã lỗi 401');
         }
@@ -61,33 +67,5 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('auth.login');
-    }
-
-    //EDIT AND UPDATE
-    
-    public function edit(){
-        return view('auth.information');
-    }
-    public function update(Request $request){
-        $data = $request->all();
-        if($data['name'] == '' || $data['name'] == Auth::user()->name){
-            return redirect()->back()->with('msg', 'Không để trống hoặc trùng tên hiện tại!');
-        }
-        $user = User::find(Auth::user()->id);
-        $data = $user->fill($data)->save();
-        return redirect()->route('auth.edit')->with('msg', 'Bạn đã cập nhật thành công!');
-    }
-    public function resetPass(Request $request){
-        $data = $request->all();
-        $password = Auth::user()->password;
-        $check = Hash::check($data['old_password'], $password);
-        if($check){
-            $data['password'] = Hash::make($data['password']);
-            $user = User::find(Auth::user()->id);
-            $data = $user->fill($data)->save();
-            return redirect()->route('auth.edit')->with('msg', 'Bạn đã cập nhật thành công!');
-        }else{
-            return redirect()->back()->with('msg', 'Vui lòng nhập điền Mật khẩu hiện tại của bạn!');
-        }
     }
 }

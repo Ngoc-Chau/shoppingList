@@ -40,8 +40,40 @@
                 <div class=" mb-3">
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Đăng nhập</button>
                 </div>
-                <a class="w-100 btn btn-lg btn-link" href="{{ route('auth.register') }}">Tạo tài khoản</a>
+                <div class="row text-center">
+                    <a class="w-100  btn-lg btn-link" href="" data-toggle="modal" data-target="#myModal">Quên mật khẩu</a>
+                </div>
+                <div class="row justify-content-center">
+                    <a class="btn btn-lg btn-success" href="{{ route('auth.register') }}">Tạo tài khoản</a>
+                </div>
             </form>
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('auth.sendMail') }}" method="POST">
+                    @csrf
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác Nhận Qua Gmail</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-floating mb-3">
+                            <label for="floatingInput">Nhập gmail</label>
+                            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="you@gmail.com">
+                        </div>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Gửi xác nhận</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @stop

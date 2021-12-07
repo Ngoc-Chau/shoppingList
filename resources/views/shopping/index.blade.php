@@ -41,8 +41,47 @@
         <div class="">
           <button type="submit" class="btn btn-secondary mb-3">Tìm kiếm</button>
         </div>
+        <div class="">
+          <a class="btn btn-secondary ml-2"  data-toggle="modal" data-target="#myModal"><i class='fa fa-share-alt'></i></a>
+        </div>
     </form>
-    
+    <div class="row justify-content-center">
+        @if(Session::has('welcome'))
+            <p style="color:red;">{{ Session::get('welcome') }}</p>
+        @endif
+    </div>
+
+    {{-- Share TodoList Start --}}
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('shopping.shareMail') }}" method="POST">
+                    @csrf
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nhập Gmail Bạn Muốn Chia Sẻ</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-floating mb-3">
+                            <label for="floatingInput">Nhập gmail</label>
+                            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="you@gmail.com">
+                        </div>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Gửi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Share TodoList Stop --}}
+
+
     <form action="{{ route('category_complete') }}" method="post">
         @csrf
         <div class="table">
