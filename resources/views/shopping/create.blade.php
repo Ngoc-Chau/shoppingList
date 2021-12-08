@@ -14,11 +14,11 @@
     <div class="py-4 text-center">
         <h1>Thêm sản phẩm</h1>
     </div>
-    <form action="{{ route('shopping.create') }}" method="post">
+    <form action="{{ route('shopping.create') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Tên sản phẩm<span style="color:red">(*)</span></label>
-            <input type="text" class="form-control" id="product" name="product">
+            <input type="text" class="form-control" id="product" name="title">
         </div>
         <div class="form-group">
             <label>Mô tả</label>
@@ -26,19 +26,24 @@
         </div>
         <div class="form-group">
             <label>Danh mục</label>
-            <select class="form-control" id="category">
-            <option>--chọn--</option>
-            <option>Đồ gia dụng</option>
-            <option>Hải sản</option>
-            <option>Thịt</option>
-            <option>Rau</option>
+            <select name="product_cate" class="form-control" id="category">
+                @foreach($cate_product as $key => $cate)
+                    <option value="{{$cate->id}}">{{$cate->name_cat}}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label>Hình ảnh</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <label>Hình ảnh sản phẩm</label>
+            <input type="file" name="product_image" class="form-control" id="image">
         </div>
-        <button type="submit" class="btn btn-primary">Lưu </button>
-        <a href="{{ route('shopping.index') }}" class="btn btn-secondary">Quay lại</a>
+        <br>
+
+        <div class="form-group">
+            <div>
+                <input type="submit" class="form-control btn btn-primary col-sm-1" value="Tạo mới">
+          
+                <input type="reset" class="form-control btn btn-secondary col-sm-1" value="Nhập lại">
+            </div>  
+        </div>
     </form>
 @stop

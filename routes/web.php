@@ -35,13 +35,13 @@ Route::namespace('Auth')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/', 'ShoppingListController@index')->name('shopping.index');
     Route::post('/share_mail', 'ShoppingListController@shareMail')->name('shopping.shareMail');
-    Route::get('/create', 'ShoppingListController@create')->name('shopping.create');
+    Route::get('/create', 'ShoppingListController@create');
     Route::post('/create', 'ShoppingListController@postCreate')->name('shopping.create');
-    Route::get('/edit-{id}', 'ShoppingListController@edit')->name('shopping.edit');
-    Route::post('/edit-{id}', 'ShoppingListController@postEdit')->name('shopping.edit');
-    Route::get('/destroy', 'ShoppingListController@destroy')->name('shopping.destroy');
+    Route::get('/edit/{id}', 'ShoppingListController@edit');
+    Route::post('/update/{id}', 'ShoppingListController@postEdit');
+    Route::get('/destroy/{id}', 'ShoppingListController@destroyProduct');
     Route::get('/deleteALl', 'ShoppingListController@deleteAll')->name('shopping.deleteAll');
-    
+    //route category
     Route::get('/category',[CategoryController::class,'category_index'])->name('category_index');
     Route::post('/category_create',[CategoryController::class,'category_create'])->name('category_insert');
     Route::get('/category/delete/{idd}',[CategoryController::class,'destroy']);
