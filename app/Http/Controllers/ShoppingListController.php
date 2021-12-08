@@ -12,6 +12,8 @@ use App\Models\Product;
 use Session;
 session_start();
 
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class ShoppingListController extends Controller
 {
@@ -44,6 +46,20 @@ class ShoppingListController extends Controller
                                                 ]);
     }
     
+    //Share Mail
+    public function shareMail(Request $request){
+        $now    = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $title  = 'Danh sách Shopping ngày '.$now;
+        $data   = $request->email;
+        $user   = Auth::user();
+        $products = Product::join('categorys', 'categorys.id', '=', 'products.cat_id')->where('products.user_id',$user->id)->get();
+        Mail::send('shopping.shareMail',['user'=>$user, 'products'=>$products],function($message) use ($title,$data){
+            $message->to($data)->subject($title);
+            $message->from($data,$title);
+        });
+        return redirect()->back()->with('msg', 'Bạn đã chia sẻ danh sách thành công!');
+    }
+
     public function create()
     {
         $cate_product = DB::table('categorys')->orderby('id', 'desc')->get();
