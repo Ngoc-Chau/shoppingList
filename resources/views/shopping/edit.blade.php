@@ -12,33 +12,48 @@
 
 @section('content')
     <div class="py-4 text-center">
-        <h1>Sửa sản phẩm</h1>
+        <h1>Cập nhật sản phẩm</h1>
     </div>
-    <form action="{{ route('shopping.create') }}" method="post">
-        @csrf
+
+    @foreach($edit_product as $key => $pro)
+    <form role="form" action="{{URL::to('/update/'.$pro->id)}}" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <div class="form-group">
-            <label>Tên sản phẩm<span style="color:red">(*)</span></label>
-            <input type="text" class="form-control" id="product" name="product">
+            <label class="col-sm-2 col-form-label" for="title">Tên</label>
+            <input type="text" name="title" id="title" class="form-control" value="{{$pro->title}}">
         </div>
+
         <div class="form-group">
-            <label>Mô tả</label>
-            <input type="text" class="form-control" id="content" name="content">
+            <label class="col-sm-2 col-form-label" for="content">Mô tả</label>
+            <textarea name="content" id="content" class="form-control">{{$pro->content}} </textarea>
         </div>
+
         <div class="form-group">
             <label>Danh mục</label>
-            <select class="form-control" id="category">
-            <option>--chọn--</option>
-            <option>Đồ gia dụng</option>
-            <option>Hải sản</option>
-            <option>Thịt</option>
-            <option>Rau</option>
+            <select name="product_cate" class="form-control" id="category">
+                <option value="{{$pro->cat_id}}">{{$pro->category->name_cat}}</option>
+                @foreach($cate_product as $key => $cate)
+                    @if($pro->cat_id != $cate->id)
+                    <option value="{{$cate->id}}">{{$cate->name_cat}}</option>
+                    @endif
+                @endforeach
             </select>
         </div>
+
         <div class="form-group">
-            <label>Hình ảnh</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <label>Hình ảnh sản phẩm</label>
+            <input type="hidden" name="old_image" class="form-control" value="{{$pro->image}}">
+            <input type="file" name="product_image" class="form-control" id="image">
+            <img src="{{URL::to('/uploads/'.$pro->image)}}" height="100" width="100">
         </div>
-        <button type="submit" class="btn btn-primary">Lưu </button>
-        <a href="{{ route('shopping.index') }}" class="btn btn-secondary">Quay lại</a>
+        <br>
+
+        <div class="form-group">
+            <div>
+                <input type="submit" class="form-control btn btn-primary col-sm-1" value="Cập nhật">
+                <input type="reset" class="form-control btn btn-primary col-sm-1" value="Nhập lại">
+            </div>  
+        </div>
     </form>
+    @endforeach
 @stop

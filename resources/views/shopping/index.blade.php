@@ -42,27 +42,31 @@
           <button type="submit" class="btn btn-secondary mb-3">Tìm kiếm</button>
         </div>
     </form>
-    
+        <div class="col-6 mb-3">
+            <a href="{{ route('shopping.create') }}" class="btn btn-info">Thêm Sản Phẩm</a>
+        </div>
     <form action="{{ route('category_complete') }}" method="post">
         @csrf
         <div class="table">
             <table class="table">
                 <tr>
-                    <th width="30px"><input type="checkbox" id="checkall" name="item[]"></th>
-                    <th>Hình ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Mô tả</th>
-                    <th width="200px"></th>
+                    <th class="col-sm-1" width="89px"><input type="checkbox" id="checkall" name="item[]"></th>
+                    <th class="col-sm-2">Hình ảnh</th>
+                    <th class="col-sm-2">Tên sản phẩm</th>
+                    <th class="col-sm-3">Mô tả</th>
+                    <th class="col-sm-2">Loại Sản Phẩm</th>
+                    <th class="col-sm-2" width="200px"></th>
                 </tr>
                 @forelse($resul_product as $sp)
                 <tr>
-                        <td><input type="checkbox" id="checkall" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
-                        <td><img src="" alt="image">{{$sp->image}}</td>
-                        <td>{{$sp->title}}</td>
-                        <td>{{$sp->content}}</td>
-                        <td>
-                            <a href="{{ route('shopping.edit',1) }}" class="btn btn-primary">Chỉnh sửa</a>
-                            <a href="{{ route('shopping.destroy',1) }}" class="btn btn-danger">Xóa</a>
+                        <td class="col-sm-1"><input type="checkbox" id="checkall" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
+                        <td class="col-sm-2"><img src="uploads/{{$sp->image}}" height="50" width="100"></td>
+                        <td class="col-sm-2">{{$sp->title}}</td>
+                        <td class="col-sm-3">{{$sp->content}}</td>
+                        <td class="col-sm-2">{{$sp->category->name_cat}}</td>
+                        <td class="col-sm-2">
+                            <a href="{{ url('edit')}}/{{$sp->id}}" class="btn btn-primary">Chỉnh sửa</a>
+                            <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger">Xóa</a>
                         </td>
                         @empty
                         <td colspan="4" style="color: red;">Không có sản phẩm nào</td>
@@ -72,30 +76,79 @@
 
             </table>
         </div>
+
         <div class="col-6 mb-3">
-            <a href="{{ route('shopping.create') }}" class="btn btn-info">Thêm Sản Phẩm</a>
             <button type="submit" class="btn btn-success">Hoàn Thành</button>
             <button type="submit" class="btn btn-danger btn-delete">Xóa đã chọn</button>
         </div>
     </form>
-    <div class="table">
+
+    <!-- <div class="table">
             <table class="table">
+                <tr>
+                    <th width="89px"> Tổng ({{$count}})</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th width="200px"></th>
+                    <th> </th>                    
+                </tr>
+
                 @forelse($resul_product_complete as $sp)
                 <tr>
                         <td width="30px"><input type="checkbox" id="item1" name="item[]" readonly="false" value="{{$sp->id}}" checked disabled="true"></td>
-                        <td><img src="" alt="image">{{$sp->image}}</td>
+                        <td><img src="uploads/{{$sp->image}}" height="50" width="100"></td>
                         <td style="text-decoration: line-through; color: #80868b!important;">{{$sp->title}}</td>
                         <td style="text-decoration: line-through; color: #80868b!important;">{{$sp->content}}</td>
+                        <td style="text-decoration: line-through; color: #80868b!important;">{{$sp->category->name_cat}}</td>
                         <td width="200px">
                             <a href="{{ url('category_uncomplete')}}/{{$sp->id}} " class="btn btn-primary">Hoàn Tác</a>
-                            <a href="{{ route('shopping.destroy',1) }}" class="btn btn-danger">Xóa</a>
+                            <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger">Xóa</a>
                         </td>
                         @empty
                         <td colspan="4" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
                 </tr>
                 @endforelse
             </table>
-    </div> 
+    </div>  -->
+
+
+        
+
+    
+
+    <!-- Thử trang  -->
+    <div class="table">
+            <table class="table">
+                
+                <tr>
+                    <th colspan="6"> Tổng sản phẩm đã chọn ({{$count}})</th>
+                </tr>
+                
+                @forelse($resul_product_complete as $sp)
+                <tr>
+                        <td class="col-sm-1"><input type="checkbox" id="item1" name="item[]" readonly="false" value="{{$sp->id}}" checked disabled="true"></td>
+                        <td class="col-sm-2"><img src="uploads/{{$sp->image}}" height="50" width="100"></td>
+                        <td class="col-sm-2" style="text-decoration: line-through; color: #80868b!important;">{{$sp->title}}</td>
+                        <td class="col-sm-3" style="text-decoration: line-through; color: #80868b!important;">{{$sp->content}}</td>
+                        <td class="col-sm-2" style="text-decoration: line-through; color: #80868b!important;">{{$sp->category->name_cat}}</td>
+                        <td class="col-sm-2" width="200px">
+                            <a href="{{ url('category_uncomplete')}}/{{$sp->id}} " class="btn btn-primary">Hoàn Tác</a>
+                            <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger">Xóa</a>
+                        </td>
+                        @empty
+                        <td colspan="6" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
+                </tr>
+                @endforelse
+                
+
+            </table>
+    </div>
+
+
+
+
+
     <!-- <script>
         $("#checkall").change(function(){
             $(".checkboxItem").prop("checked",$(this).prop("checked"))
