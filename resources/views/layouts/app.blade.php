@@ -14,12 +14,45 @@
         @stack('styles')
     </head>
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <div class="col-md-3 text-end">
+        <div class="col-md-4 text-end">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">Danh sách mua</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Sản phẩm</a></li>
+                <li><a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">TRANG CHỦ</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">NGÔN NGỮ</a></li>
+                <li><a class="nav-link px-2 link-dark" data-toggle="modal" data-target="#myModal">CHIA SẺ <i class='fa fa-share-alt-square'></i></a></li>
+                    
             </ul>
         </div>
+
+        {{-- Share TodoList Start --}}
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('shopping.shareMail') }}" method="POST">
+                        @csrf
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Nhập Gmail Bạn Muốn Chia Sẻ</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-floating mb-3">
+                                <label for="floatingInput">Nhập gmail</label>
+                                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="you@gmail.com">
+                            </div>
+                            <i>( Chia sẻ cho bạn bè danh sách cần tìm và mua của bạn )</i>
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Gửi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- Share TodoList Stop --}}
 
         <div class="col-md-3 text-end">
             @if(Auth::check())
@@ -43,7 +76,7 @@
     </body>
     <footer class="justify-content-between align-items-center py-3 my-4 border-top">
         <div class="text-center">
-        <span class="text-muted">&copy; Shopping List 2021</span>
+        <span class="text-muted">&copy; SHOPPING LIST 2021</span>
         </div>
     </footer>
 </html>
