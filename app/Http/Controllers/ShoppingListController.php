@@ -19,7 +19,6 @@ class ShoppingListController extends Controller
 {
     public function index()
     {
-        //->join('categorys','categorys.id','=','products.cat_id')
         $user = Auth::user();
         $resul_category= Category::where('user_id',$user->id)->get();
         $resul_product= Product::where('products.user_id',$user->id)
@@ -42,7 +41,8 @@ class ShoppingListController extends Controller
         return view('category.category_index',['resul_category'=>$resul_category,
                                                 'resul_product'=>$resul_product,
                                                 'resul_product_complete'=>$resul_product_complete,
-                                                'count'=>$count
+                                                'count'=>$count,
+                                                'cat_id'=>$id
                                                 ]);
     }
     
@@ -80,7 +80,7 @@ class ShoppingListController extends Controller
         $data['content'] = $request->content;
         $data['cat_id'] = $request->product_cate;
         $data['user_id'] = $user->id;        
-        $data['created_at'] = $request->created_at;
+        $data['completed'] = 0;
         $data['image'] = $request->product_image;
         $get_image = $request->file('product_image');
 
@@ -108,23 +108,6 @@ class ShoppingListController extends Controller
         return redirect('/');
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {   
         $user = Auth::user();
@@ -171,19 +154,34 @@ class ShoppingListController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function productCompleted(Request $request)
     {
-        //
-    }
-    public function deleteAll($id)
+        $data = $request->all();
+        foreach($data['product_id'] as $id)
+        {   
+            $product = Product::find($id);
+            $product->completed = '1';
+            $product->save();
+        }
+        return response()->json('success');
+    } 
+
+    public function deleteAll(Request $request)
     {
-        //
+        $data = $request->all();
+        foreach($data['product_id'] as $id)
+        {   
+            $product = Product::find($id);
+            $product->delete();
+        }
+        return response()->json('success');
     }
-    
+
+    public function categoryUncomplete(Request $request,$id)
+    {
+        $model= Product::find($id);
+        $model->completed= '0';
+        $model->save();
+        return redirect('/');
+    }
 }
