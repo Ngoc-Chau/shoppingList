@@ -62,11 +62,11 @@
                 <div class="row g-3">
                     <input type="hidden" name="token_password" value="{{ $token }}">
                     <div class="col-12 mb-2">
-                      <label class="form-label">Mật khẩu</label>
+                      <label class="form-label">@lang('lang.password')</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
                     </div>
                     <div class="col-12 mb-3">
-                      <label class="form-label">Nhập lại mật khẩu</label>
+                      <label class="form-label">@lang('lang.Re_EnterPassword')</label>
                       <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Nhập lại">
                     </div>
                     <div class="col-12 mb-3">

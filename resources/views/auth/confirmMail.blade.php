@@ -27,15 +27,15 @@
 <body>
 	<div class="confirm">
 		<div class="container">
-            <h2>Bạn đã gửi yêu lấy lại mật khẩu</h2>
+            <h2>@lang('lang.RequestToGetAPassword')</h2>
         </div>
 		<div class="container" style="background-color:white">
 			<h2 class="note"><b><i>
-				<p>Quý khách vui lòng nhấn vào link: <a target="_blank" href="{{ $url }}">{{ $url }}</a>
+				<p>@lang('lang.Please click on the link'): <a target="_blank" href="{{ $url }}">{{ $url }}</a>
 			</i></b></h2> 
 		</div>
 		<div class="container">
-			<h3 class="code">ShoppingList</h3>
+			<h3 class="code">@lang('lang.ShoppingList')</h3>
 		</div>
 
 	</div>

@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="py-4 text-center">
-        <h1>ĐĂNG KÝ</h1>
+        <h1 style = 'text-transform: uppercase'>@lang('lang.register')</h1>
     </div>
     <div class="text-center">
       @if(Session::has('msg'))
@@ -25,8 +25,8 @@
           @csrf
           <div class="row g-3">
             <div class="col-12 mb-2">
-              <label class="form-label">Họ tên</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="">
+              <label class="form-label">@lang('lang.fullname')</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="@lang('lang.fullname')" value="">
             </div>
             @error('name')
                 <p class="col-12 mb-3" style="color:red;">{{ $message }}</p>
@@ -39,24 +39,24 @@
               <p class="col-12 mb-3" style="color:red;">{{ $message }}</p>
             @enderror
             <div class="col-12 mb-2">
-              <label class="form-label">Mật khẩu</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
+              <label class="form-label">@lang('lang.password')</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="@lang('lang.password')">
             </div>
             @error('password')
               <p class="col-12 mb-3" style="color:red;">{{ $message }}</p>
             @enderror
             <div class="col-12 mb-3">
-              <label class="form-label">Nhập lại mật khẩu</label>
-              <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Nhập lại">
+              <label class="form-label">@lang('lang.Re_EnterPassword')</label>
+              <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="@lang('lang.Re_EnterPassword')">
             </div>
             @error('confirm_password')
               <p class="col-12 mb-4" style="color:red;">{{ $message }}</p>
             @enderror
             <div class="col-12 mb-3">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Đăng ký</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit">@lang('lang.register')</button>
             </div>
             <div class="col-12 mb-3">
-                <a class="w-100 btn btn-lg btn-link" href="{{ route('auth.login') }}">Quay lại</a>
+                <a class="w-100 btn btn-lg btn-link" href="{{ route('auth.login') }}">@lang('lang.back')</a>
             </div>
           </div>
         </form>
