@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShoppingListController;
+use App\Http\Controllers\ExcelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +32,7 @@ Route::namespace('Auth')->group(function(){
     Route::get('/resetPass/{token}', 'ResetPasswordController@showFormPass')->name('auth.showFormPass');
     Route::post('/resetPass', 'ResetPasswordController@resetPassword')->name('auth.resetPassword');
 });
-
+ 
 Route::middleware('auth')->group(function(){
     Route::get('/', 'ShoppingListController@index')->name('shopping.index');
     Route::post('/share_mail', 'ShoppingListController@shareMail')->name('shopping.shareMail');
@@ -50,6 +51,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/delete/{idd}', 'CategoryController@destroy');
     Route::post('/category/update', 'CategoryController@category_update')->name('category_update');
     Route::get('/category/{id}', 'ShoppingListController@index_category');
+    //route excel
+    Route::get('/export',[ExcelController::class,'export']);
 });
 
 

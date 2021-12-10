@@ -121,6 +121,12 @@ class ShoppingListController extends Controller
     public function postEdit(Request $request, $id)
     {
         $user = Auth::user();
+        $u=Product::with('category')->where('user_id',$user->id)->where('id',$id)->where('completed',0)->get();
+        $a=0;
+        foreach($u as $sp)
+        {
+            $a= $sp->cat_id;
+        }
         $data = array();
         $data['title'] = $request->title;
         $data['content'] = $request->content;
@@ -139,12 +145,10 @@ class ShoppingListController extends Controller
             DB::table('products')->where('id', $id)->update($data);
             Session::put('message', 'Cập nhật sản phẩm thành công');
             return redirect('/');
-        }else {
-            $data['image'] = $request->old_image;
         }
         DB::table('products')->where('id', $id)->update($data);
         Session::put('message', 'Cập nhật sản phẩm thành công');
-        return redirect('/');
+        return redirect("/category/$a");
     }
 
     public function searchProduct(Request $request) {

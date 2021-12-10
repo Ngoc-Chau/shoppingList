@@ -129,6 +129,7 @@
 
     <div class="col-6 mb-3">
         <a href="{{ route('shopping.create') }}" class="btn btn-info">Thêm Sản Phẩm</a>
+        <a href="{{url('export')}}" class="btn btn-warning">In Danh Sách</a>
     </div>
     
     <div class="table-responsive mb-3">

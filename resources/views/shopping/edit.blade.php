@@ -48,9 +48,7 @@
         </div>
 
         <div class="form-group">
-            <div class="text-center">
-                <input type="submit" class="form-control btn btn-primary col-sm-4" value="Cập nhật">
-            </div>  
+                <input type="submit" class="form-control btn btn-primary col-sm-1" value="Cập nhật">
         </div>
     </form>
     @endforeach
