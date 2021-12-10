@@ -173,7 +173,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="background: #f3f3f375;">
             <tr>
                 <th colspan="6"> Tổng sản phẩm đã chọn ({{$count}})</th>
             </tr>
