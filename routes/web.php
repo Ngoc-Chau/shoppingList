@@ -39,9 +39,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/create', 'ShoppingListController@postCreate')->name('shopping.create');
     Route::get('/edit/{id}', 'ShoppingListController@edit');
     Route::post('/update/{id}', 'ShoppingListController@postEdit');
+    Route::get('/searchProduct', 'ShoppingListController@searchProduct')->name('shopping.searchProduct');
     Route::get('/destroy/{id}', 'ShoppingListController@destroyProduct');
-    Route::post('/product_completed', 'ShoppingListController@productCompleted')->name('shopping.completed');
     Route::post('/deleteALl', 'ShoppingListController@deleteAll')->name('shopping.deleteAll');
+    Route::post('/product_completed', 'ShoppingListController@productCompleted')->name('shopping.completed');
     Route::get('/category_uncomplete/{id}', 'ShoppingListController@categoryUncomplete');
     //route category
     Route::get('/category', 'CategoryController@category_index')->name('category_index');

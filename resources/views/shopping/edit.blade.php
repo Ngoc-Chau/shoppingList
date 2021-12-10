@@ -43,15 +43,13 @@
         <div class="form-group">
             <label>Hình ảnh sản phẩm</label>
             <input type="hidden" name="old_image" class="form-control" value="{{$pro->image}}">
-            <input type="file" name="product_image" class="form-control" id="image">
-            <img src="{{URL::to('/uploads/'.$pro->image)}}" height="100" width="100">
+            <input type="file" name="product_image" class="form-control mb-3" id="image">
+            <img src="{{URL::to('/uploads/'.$pro->image)}}" style="object-fit: cover;" height="100" width="160">
         </div>
-        <br>
 
         <div class="form-group">
-            <div>
-                <input type="submit" class="form-control btn btn-primary col-sm-1" value="Cập nhật">
-                <input type="reset" class="form-control btn btn-primary col-sm-1" value="Nhập lại">
+            <div class="text-center">
+                <input type="submit" class="form-control btn btn-primary col-sm-4" value="Cập nhật">
             </div>  
         </div>
     </form>

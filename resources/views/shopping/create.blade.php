@@ -27,6 +27,7 @@
         <div class="form-group">
             <label>Danh mục</label>
             <select name="product_cate" class="form-control" id="category">
+                <option value="">-- chọn --</option>
                 @foreach($cate_product as $key => $cate)
                     <option value="{{$cate->id}}">{{$cate->name_cat}}</option>
                 @endforeach
@@ -40,9 +41,8 @@
 
         <div class="form-group">
             <div>
-                <input type="submit" class="form-control btn btn-primary col-sm-1" value="Tạo mới">
-          
-                <input type="reset" class="form-control btn btn-secondary col-sm-1" value="Nhập lại">
+                <input type="submit" class="form-control btn btn-primary col-sm-1" style="margin-bottom:5px" value="Tạo mới">
+                <input type="reset" class="form-control btn btn-secondary col-sm-1" style="margin-bottom:5px" value="Nhập lại">
             </div>  
         </div>
     </form>

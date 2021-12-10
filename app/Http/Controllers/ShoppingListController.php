@@ -100,13 +100,6 @@ class ShoppingListController extends Controller
         Session::put('message', 'Thêm sản phẩm thành công');
         return redirect("/");
     }
-    public function destroyProduct(Request $request,$id)
-    {
-        $model= Product::find($id);
-        $model->delete();
-        $request->session()->flash('message','Đã Xóa');
-        return redirect('/');
-    }
     
     public function edit($id)
     {   
@@ -154,6 +147,22 @@ class ShoppingListController extends Controller
         return redirect('/');
     }
 
+    public function searchProduct(Request $request) {
+        $user = Auth::user();
+        $data = $request->search;
+        $resul_product = Product::with('category')->where('title', 'like', "%{$data}%")
+                                                    ->where('user_id',$user->id)
+                                                    ->where('completed','0')->get();
+        $resul_product_complete= Product::with('category')->where('title', 'like', "%{$data}%")
+                                                    ->where('completed','1')
+                                                    ->where('user_id',$user->id)->get();
+        $count= $resul_product_complete->count();
+        return view('shopping.searchProduct',['resul_product'=>$resul_product,
+                                        'resul_product_complete'=>$resul_product_complete,
+                                        'count'=>$count, 'data'=>$data,
+                                        ]);
+    }
+
     public function productCompleted(Request $request)
     {
         $data = $request->all();
@@ -165,6 +174,14 @@ class ShoppingListController extends Controller
         }
         return response()->json('success');
     } 
+
+    public function destroyProduct(Request $request,$id)
+    {
+        $model= Product::find($id);
+        $model->delete();
+        $request->session()->flash('message','Đã Xóa');
+        return redirect()->back();
+    }
 
     public function deleteAll(Request $request)
     {
@@ -182,6 +199,6 @@ class ShoppingListController extends Controller
         $model= Product::find($id);
         $model->completed= '0';
         $model->save();
-        return redirect('/');
+        return redirect()->back();
     }
 }

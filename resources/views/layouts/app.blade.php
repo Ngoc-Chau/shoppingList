@@ -17,7 +17,20 @@
         <div class="col-md-4 text-end">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">TRANG CHỦ</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">NGÔN NGỮ</a></li>
+                {{--  <li><a href="#" class="nav-link px-2 link-dark">NGÔN NGỮ</a></li>  --}}
+                <li>
+                    <div class="dropdown">
+                        <a class="nav-link px-2 link-dark dropdown-toggle" data-toggle="dropdown">
+                            NGÔN NGỮ
+                        </a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Link 1</a>
+                          <a class="dropdown-item" href="#">Link 2</a>
+                          <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                      </div>
+                </li>
+
                 <li><a class="nav-link px-2 link-dark" data-toggle="modal" data-target="#myModal">CHIA SẺ <i class='fa fa-share-alt-square'></i></a></li>
                     
             </ul>
@@ -54,7 +67,7 @@
         </div>
         {{-- Share TodoList Stop --}}
 
-        <div class="col-md-3 text-end">
+        <div class="col-md-3 text-end" style="z-index: -1;">
             @if(Auth::check())
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{{ route('auth.edit') }}" class="nav-link px-2 link-dark">{{ Auth::user()->name }}</a></li>
