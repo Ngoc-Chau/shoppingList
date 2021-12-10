@@ -16,19 +16,20 @@
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-4 text-end">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">TRANG CHỦ</a></li>
-                {{--  <li><a href="#" class="nav-link px-2 link-dark">NGÔN NGỮ</a></li>  --}}
+                <li><a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">@lang('lang.list')</a></li>
                 <li>
-                    <div class="dropdown">
-                        <a class="nav-link px-2 link-dark dropdown-toggle" data-toggle="dropdown">
-                            NGÔN NGỮ
-                        </a>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Link 1</a>
-                          <a class="dropdown-item" href="#">Link 2</a>
-                          <a class="dropdown-item" href="#">Link 3</a>
+                    <!-- Đa ngôn ngữ  -->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">@lang('lang.language')
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{url('lang/en')}}">@lang('lang.English')</a></li>
+                                <li><a href="{{url('lang/ja')}}">@lang('lang.Japanese')</a></li>
+                                <li><a href="{{url('lang/vi')}}">@lang('lang.Vietnamese')</a></li>
+                            </ul>
                         </div>
-                      </div>
+                    <!-- Đa ngôn ngữ  -->
                 </li>
 
                 <li><a class="nav-link px-2 link-dark" data-toggle="modal" data-target="#myModal">CHIA SẺ <i class='fa fa-share-alt-square'></i></a></li>

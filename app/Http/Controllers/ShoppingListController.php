@@ -19,10 +19,10 @@ class ShoppingListController extends Controller
 {
     public function index()
     {
+        //->join('categorys','categorys.id','=','products.cat_id')
         $user = Auth::user();
         $resul_category= Category::where('user_id',$user->id)->get();
-        $resul_product= Product::where('products.user_id',$user->id)
-                                ->where('completed','0')->get();
+        $resul_product= Product::where('products.user_id',$user->id)->where('completed','0')->paginate(5);
         $resul_product_complete= Product::with('category')->where('completed','1')->where('user_id',$user->id)->get();
         $count= $resul_product_complete->count();
         return view('shopping.index',['resul_category'=>$resul_category,
@@ -35,14 +35,13 @@ class ShoppingListController extends Controller
     {
         $user = Auth::user();
         $resul_category= Category::where('user_id',$user->id)->get();
-        $resul_product= Product::where('user_id',$user->id)->where('cat_id',$id)->where('completed',0)->get();
+        $resul_product= Product::where('user_id',$user->id)->where('cat_id',$id)->where('completed',0)->paginate(3);
         $resul_product_complete= Product::where('user_id',$user->id)->where('cat_id',$id)->where('completed',1)->get();
         $count= $resul_product_complete->count();
         return view('category.category_index',['resul_category'=>$resul_category,
                                                 'resul_product'=>$resul_product,
                                                 'resul_product_complete'=>$resul_product_complete,
-                                                'count'=>$count,
-                                                'cat_id'=>$id
+                                                'count'=>$count
                                                 ]);
     }
     
@@ -74,6 +73,15 @@ class ShoppingListController extends Controller
      */
     public function postCreate(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ],
+
+        [
+            'title.required'   => __('lang.msgTitle'),
+            'content.required' => __('lang.msgContent')
+        ]);
         $user = Auth::user();
         $data = array();
         $data['title'] = $request->title;
@@ -94,8 +102,15 @@ class ShoppingListController extends Controller
             Session::put('message', 'Thêm sản phẩm thành công');
             return redirect("/");
         }
-
-        $data['image'] = '';
+        if($get_image==null)
+        {   
+            $new_image='default.png';
+            $data['image']=$new_image;
+        }
+        else
+        {
+            $data['image'] = '';
+        }
         DB::table('products')->insert($data);
         Session::put('message', 'Thêm sản phẩm thành công');
         return redirect("/");

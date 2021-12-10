@@ -51,9 +51,23 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/delete/{idd}', 'CategoryController@destroy');
     Route::post('/category/update', 'CategoryController@category_update')->name('category_update');
     Route::get('/category/{id}', 'ShoppingListController@index_category');
+    Route::post('/category_complete',[CategoryController::class,'category_complete'])->name('category_complete');
+    Route::get('/category_uncomplete/{id}',[CategoryController::class,'category_uncomplete']);
     //route excel
     Route::get('/export',[ExcelController::class,'export']);
 });
+
+//Thay đổi ngôn ngữ
+Route::get('lang/{locale}', function($locale)
+{
+    if(! in_array($locale, ['en', 'vi', 'ja'])) {
+        abort(404);
+    }
+    session()->put('locale',  $locale);
+    return redirect()->back();
+});
+
+
 
 
 

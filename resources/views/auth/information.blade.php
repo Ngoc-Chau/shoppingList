@@ -84,15 +84,15 @@
                 },
                 messages: {
                     "old_password": {
-                        required: "Vui lòng nhập mật khẩu hiện tại",
+                        required: "@lang('lang.CurrentPasswordPlease')",
                     },
                     "password": {
-                        required: "Bắt buộc nhập mật khẩu",
-                        minlength: "Hãy nhập ít nhất 6 ký tự"
+                        required: "@lang('lang.PasswordIsRequired')",
+                        minlength: "@lang('lang.Need at least 6 characters')"
                     },
                     "confirm_password": {
-                        required: "Bắt buộc nhập mật khẩu",
-                        equalTo: "Hai password phải giống nhau",
+                        required: "@lang('lang.PasswordIsRequired')",
+                        equalTo: "@lang('lang.2PasswordsMustBeTheSame')",
                     }
                 }
             });
@@ -102,7 +102,7 @@
 
 @section('content')
     <div class="py-4 text-center">
-        <h1>THÔNG TIN CỦA BẠN</h1>
+        <h1>@lang('lang.YourInfor')</h1>
     </div>
     <div class="row justify-content-center">
     @if(Session::has('msg'))
@@ -116,30 +116,30 @@
                 @csrf
                 <div class="row g-3">
                     <div class="col-12 mb-3">
-                        <label class="form-label">Họ tên</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" value="{{ Auth::user()->name }}">
+                        <label class="form-label">@lang('lang.fullname')</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="@lang('lang.fullname')" value="{{ Auth::user()->name }}">
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="email" class="form-label">Email <i>(không thể thay đổi)</i></label>
+                        <label for="email" class="form-label">Email <i>(@lang('lang.CannotChange'))</i></label>
                         <input type="email" class="form-control" id="email" name="email" readonly value="{{ Auth::user()->email }}">
                     </div>
                     <div class="col-12 mb-3">
                         <input id="checkbox" type="checkbox" onclick="check()">
-                        <label  style="color:blue; margin-top: 15px;">Bạn có muốn thay đổi mật khẩu?</label>
+                        <label  style="color:blue; margin-top: 15px;">@lang('lang.ChangeYourPassword')?</label>
                     </div>
                     <div id="new_pass" class="col-12">
                         
                     </div>
                     <div class="col-12 mb-3">
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Cập nhật</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">@lang('lang.update')</button>
                     </div>
                     <div class="col-12 mb-3">
-                        <a class="w-100 btn btn-lg btn-link" href="{{ route('shopping.index') }}">Quay lại</a>
+                        <a class="w-100 btn btn-lg btn-link" href="{{ route('shopping.index') }}">@lang('lang.back')</a>
                     </div>
                 </div>
             </form>
             @else
-            <h3>Không có thông tin</h3>
+            <h3>@lang('lang.NoInfor')</h3>
             @endif
         </div>
     </div>
@@ -153,19 +153,19 @@
                         <a class="close" href="#"><i class="fa fa-close button"></i></a>
                     </div>
                     <div class="col-sm-12 mb-3">
-                        <label class="form-label">Mật khẩu hiện tại</label>
+                        <label class="form-label">@lang('lang.CurrentPassword')</label>
                         <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Nhập ...">
                     </div>
                     <div class="col-sm-12 mb-3">
-                        <label class="form-label">Mật khẩu</label>
+                        <label class="form-label">@lang('lang.password')</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Nhập ...">
                     </div>
                     <div class="col-sm-12 mb-4">
-                        <label class="form-label">Nhập lại mật khẩu</label>
+                        <label class="form-label">@lang('lang.Re_EnterPassword')</label>
                         <input type="password" class="form-control" name="confirm_password" placeholder="Nhập ...">
                     </div>
                     <div class="col-sm-12 mb-3">
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Thay đổi</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">@lang('lang.change')</button>
                     </div>
                 </form>
             </div>

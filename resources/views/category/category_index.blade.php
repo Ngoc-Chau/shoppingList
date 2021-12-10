@@ -43,7 +43,7 @@
             }
         });
 
-        function completed(id) {
+        function completed() {
             var allVals = [];
             $('.checkboxItem:checked').each(function() {
                 allVals.push($(this).val());
@@ -66,7 +66,7 @@
             });
         }
 
-        function deleteALl(id) {
+        function deleteALl() {
             var confirmDel = confirm("Bạn chắc chắn muốn xóa đã chọn không?");
             if(confirmDel == true) {
                 var allVals = [];
@@ -91,11 +91,6 @@
                 });
             }
         }
-
-        $(document).ready(function() {
-            var id = $("#categoty").val();
-            $('.cat-'+id).addClass('active');
-        });
     </script>
 @endpush
 
@@ -105,93 +100,97 @@
         @if(Session::has('welcome'))
             <p style="color:red;">{{ Session::get('welcome') }}</p>
         @endif
-        <h1>SHOPPING LIST</h1>
+        <h1>@lang('lang.ShoppingList')</h1>
     </div>
     {{session('er')}}
     
     <div class="nav justify-content-center py-1 mb-4">
         <nav class="nav d-flex justify-content-between">
             <a class="btn btn-light" href="{{ route('category_index')}}">+</a>
-            <a class="btn btn-light ml-2" href="{{ route('shopping.index') }}">Tất cả</a>
+            <a class="btn btn-light" href="{{ route('shopping.index') }}">@lang('lang.all')</a>
           @foreach($resul_category as $cate)
-          <a class="btn btn-light ml-2 cat-{{$cate->id}}" href="{{ url('category')}}/{{$cate->id}}">{{$cate->name_cat}}</a>
+          <a class="btn btn-light" href="{{ url('category')}}/{{$cate->id}}">{{$cate->name_cat}}</a>
           @endforeach
         </nav>
     </div>
+    
 
-    <form class="row justify-content-center" action="{{ route('shopping.searchProduct') }}" method="GET">
-        @csrf
+    <form class="row justify-content-center">
         <div class="col-4">
-            <input type="hidden" class="form-control" id="categoty" value="{{ $cat_id }}">
-            <input type="search" name="search" class="form-control" id="search" placeholder="Nhập ..." >
+          <input type="search" class="form-control" id="search" placeholder="Nhập ...">
         </div>
         <div class="">
-            <button type="submit" class="btn btn-secondary mb-3">Tìm kiếm</button>
+          <button type="submit" class="btn btn-secondary mb-3">@lang('lang.search')</button>
         </div>
     </form>
-
-    <div class="col-6 mb-3">
-        <a href="{{ route('shopping.create') }}" class="btn btn-info">Thêm Sản Phẩm</a>
-    </div>
-    <div class="table-responsive mb-3">
-        <table class="table">
-            <tr>
-                <th class="col-sm-1" width="89px"><input type="checkbox" id="checkall" class="checkboxAll" name="item[]"></th>
-                <th class="col-sm-2">Hình ảnh</th>
-                <th class="col-sm-2">Tên sản phẩm</th>
-                <th class="col-sm-3">Mô tả</th>
-                <th class="col-sm-2">Loại Sản Phẩm</th>
-                <th class="col-sm-2" width="200px"></th>
-            </tr>
-            @forelse($resul_product as $sp)
-            <tr>
-                    <td class="col-sm-1"><input type="checkbox" id="item1" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
+        <div class="col-6 mb-3">
+            <a href="{{ route('shopping.create') }}" class="btn btn-info">@lang('lang.AddProduct')</a>
+        </div>
+    <form action="{{ route('category_complete') }}" method="post">
+        @csrf
+        <div class="table">
+            <table class="table">
+                <tr>
+                    <th class="col-sm-1"><input type="checkbox" id="checkall" class="checkboxAll" name="item[]"></th>
+                    <th class="col-sm-2">@lang('lang.image')</th>
+                    <th class="col-sm-2">@lang('lang.ProductName')</th>
+                    <th class="col-sm-3">@lang('lang.description')</th>
+                    <th class="col-sm-2">@lang('lang.category')</th>
+                    <th class="col-sm-2" width="200px"></th>
+                </tr>
+                @forelse($resul_product as $sp)
+                <tr>
+                    <td class="col-sm-1"><input type="checkbox" name="item[]" class="checkboxItem" value="{{$sp->id}}"></td>
                     <td class="col-sm-2"><img src="{{asset('uploads')}}/{{$sp->image}}" style="object-fit: cover;" height="50" width="80"></td>
                     <td class="col-sm-2">{{$sp->title}}</td>
                     <td class="col-sm-3">{{$sp->content}}</td>
                     <td class="col-sm-2">{{$sp->category->name_cat}}</td>
-
                     <td class="col-sm-2">
-                        <a href="{{ url('edit')}}/{{$sp->id}}" class="btn btn-primary" style="margin: 0 4px 4px 0;">Chỉnh sửa</a>
-                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;">Xóa</a>
+                        <a href="{{ url('edit')}}/{{$sp->id}}" class="btn btn-primary" style="margin: 0 4px 4px 0;">@lang('lang.edit')</a>
+                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;">@lang('lang.delete')</a>
                     </td>
                     @empty
-                    <td colspan="6" style="color: red;">Không có sản phẩm nào</td>
-            </tr>
+                    <td colspan="6" style="color: red;">@lang('lang.msgProduct')</td>
+                </tr>
             @endforelse
-            
-
-        </table>
-    </div>
-    <div class="row">
-        <div class="mb-3 ml-4">
-            <button type="sumit" class="btn btn-success btn-complete" onclick="completed({{$cat_id}})" disabled>Hoàn Thành</button>       
+            </table>
         </div>
-        <div class="mb-3 ml-2">
-            <button type="submit" class="btn btn-danger btn-delete" onclick="deleteALl({{$cat_id}})" disabled>Xóa đã chọn</button>
-        </div>
-    </div>
+        <!-- Phân trang -->
+            <div class="row justify-content-center mb-3">{{ $resul_product->links("pagination::bootstrap-4") }}</div>
 
-    <div class="table-responsive">
-        <table class="table" style="background: #f3f3f375;">
-            <tr>
-                <th colspan="6"> Tổng sản phẩm đã chọn ({{$count}})</th>
-            </tr>
-            @forelse($resul_product_complete as $sp)
-            <tr>
-                    <td class="col-sm-1"><input type="checkbox" checked disabled="true"></td>
-                    <td class="col-sm-2"><img src="{{asset('uploads')}}/{{$sp->image}}" style="object-fit: cover;" height="50" width="80"></td>
+        <div class="row">
+            <div class="mb-3 ml-4">
+                <button type="sumit" class="btn btn-success btn-complete" onclick="completed()" disabled>@lang('lang.completed')</button>       
+            </div>
+            <div class="mb-3 ml-2">
+                <button type="submit" class="btn btn-danger btn-delete" onclick="deleteALl()" disabled>@lang('lang.DeleteAll')</button>
+            </div>
+        </div>
+    </form>
+    <div class="table">
+            <table class="table">
+                <tr> <th colspan="6"> @lang('lang.TotalProduct') ({{$count}})</th> </tr>
+                @forelse($resul_product_complete as $sp)
+                <tr>
+                    <td class="col-sm-1"><input type="checkbox" id="item1" name="item[]" readonly="false" value="{{$sp->id}}" checked disabled="true"></td>
+                    @if($sp->image=='default.png')
+                        <td>
+                            <img src="{{URL::to('/uploads/'.$sp->image)}}" height="100" width="100">
+                        </td>    
+                    @else
+                        <td class="col-sm-2"><img src="{{asset('uploads')}}/{{$sp->image}}" height="50" width="100" style = "filter:brightness(40%);"></td>
+                    @endif
                     <td class="col-sm-2" style="text-decoration: line-through; color: #80868b!important;">{{$sp->title}}</td>
                     <td class="col-sm-3" style="text-decoration: line-through; color: #80868b!important;">{{$sp->content}}</td>
                     <td class="col-sm-2" style="text-decoration: line-through; color: #80868b!important;">{{$sp->category->name_cat}}</td>
                     <td class="col-sm-2">
-                        <a href="{{ url('category_uncomplete')}}/{{$sp->id}} " class="btn btn-primary" style="margin: 0 4px 4px 0;">Hoàn Tác</a>
-                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;">Xóa</a>
+                        <a href="{{ url('category_uncomplete')}}/{{$sp->id}} " class="btn btn-primary" style="margin: 0 4px 4px 0;">@lang('lang.undo')</a>
+                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;">@lang('lang.delete')</a>
                     </td>
                     @empty
-                    <td colspan="4" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
-            </tr>
-            @endforelse
-        </table>
+                    <td colspan="6" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
+                </tr>
+                @endforelse
+            </table>
     </div>
 @stop
