@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/share_mail', 'ShoppingListController@shareMail')->name('shopping.shareMail');
     Route::get('/create', 'ShoppingListController@create');
     Route::post('/create', 'ShoppingListController@postCreate')->name('shopping.create');
-    Route::get('/edit/{id}', 'ShoppingListController@edit');
+    Route::get('/edit/{id}/{id_cat}', 'ShoppingListController@edit');
     Route::post('/update/{id}', 'ShoppingListController@postEdit');
     Route::get('/searchProduct', 'ShoppingListController@searchProduct')->name('shopping.searchProduct');
     Route::get('/destroy/{id}', 'ShoppingListController@destroyProduct');

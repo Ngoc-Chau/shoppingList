@@ -158,7 +158,7 @@
                 <td class="col-sm-3">{{$sp->content}}</td>
                 <td class="col-sm-2">{{$sp->category->name_cat}}</td>
                 <td class="col-sm-2 text-center">
-                    <a href="{{ url('edit')}}/{{$sp->id}}" class="btn" style="margin: 0 4px 4px 0;"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                    <a href="{{ url('edit')}}/{{$sp->id}}/0" class="btn" style="margin: 0 4px 4px 0;"><i class="fa fa-edit" style="font-size:24px"></i></a>
                     <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
                 </td>
                 @empty
