@@ -118,7 +118,6 @@ class ShoppingListController extends Controller
     
     public function edit($id)
     {   
-        $user = Auth::user();
         $cate_product = DB::table('categorys')->orderby('id', 'desc')->get();
         $edit_product = Product::with('category')->where('products.id',$id)->get();
         $manager_product = view('shopping.edit')->with('edit_product',$edit_product)->with('cate_product',$cate_product); 
