@@ -19,7 +19,7 @@
             <p style="color:red;">{{ Session::get('msg') }}</p>
         @endif
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-bottom: 4.5rem!important;">
         <div class="col-sm-4">
             <form action="{{ route('auth.login') }}" method="POST">
                 @csrf
@@ -32,7 +32,7 @@
                 @enderror
                 <div class="form-floating mb-3">
                     <label for="floatingPassword">@lang('lang.password')</label>
-                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="mật khẩu">
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="@lang('lang.password')">
                 </div>
                 @error('password')
                     <p class="mb-3" style="color:red;">{{ $message }}</p>
@@ -41,7 +41,7 @@
                     <button class="w-100 btn btn-lg btn-primary" type="submit">@lang('lang.login')</button>
                 </div>
                 <div class="row text-center">
-                    <a class="w-100  btn-lg btn-link" href="" data-toggle="modal" data-target="#myModal">@lang('lang.forgot')</a>
+                    <a class="w-100  btn-lg btn-link mb-2" href="" data-toggle="modal" data-target="#myModal">@lang('lang.forgot')</a>
                 </div>
                 <div class="row justify-content-center">
                     <a class="btn btn-lg btn-success" href="{{ route('auth.register') }}">@lang('lang.CreateAccount')</a>
@@ -63,7 +63,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="form-floating mb-3">
-                            <label for="floatingInput">@lang('lang.EnterMail')</label>
+                            <label for="floatingInput">@lang('lang.yourMail')</label>
                             <input type="email" class="form-control" id="floatingInput" name="email" placeholder="you@gmail.com">
                         </div>
                     </div>

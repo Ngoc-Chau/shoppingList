@@ -5,7 +5,7 @@
         .changePass {
             top: 3em;
             position: fixed;
-            z-index: 2;
+            z-index: 1;
             opacity: 0;
             visibility: hidden;
             transition: 0.6s;
@@ -24,7 +24,7 @@
             left: 0px;
             background: #6c6c6ce8;
             position: fixed;
-            z-index: 1;
+            z-index: 0;
             opacity: 0;
             visibility: hidden;
             transition: 0.6s;
@@ -109,7 +109,7 @@
         <p style="color:red;">{{ Session::get('msg') }}</p>
     @endif
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
       <div class="col-sm-4">
         @if(Auth::check())
             <form class="needs-validation" action="{{ route('auth.update') }}" method="POST">
@@ -154,15 +154,15 @@
                     </div>
                     <div class="col-sm-12 mb-3">
                         <label class="form-label">@lang('lang.CurrentPassword')</label>
-                        <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Nhập ...">
+                        <input type="password" class="form-control" id="old_password" name="old_password" placeholder="@lang('lang.password')...">
                     </div>
                     <div class="col-sm-12 mb-3">
                         <label class="form-label">@lang('lang.password')</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Nhập ...">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="@lang('lang.password')...">
                     </div>
                     <div class="col-sm-12 mb-4">
                         <label class="form-label">@lang('lang.Re_EnterPassword')</label>
-                        <input type="password" class="form-control" name="confirm_password" placeholder="Nhập ...">
+                        <input type="password" class="form-control" name="confirm_password" placeholder="@lang('lang.password')...">
                     </div>
                     <div class="col-sm-12 mb-3">
                         <button class="w-100 btn btn-primary btn-lg" type="submit">@lang('lang.change')</button>

@@ -2,8 +2,9 @@
 
 return [
     // Header
-    'list'       => 'Danh sách mua',
-    'language'   => 'Ngôn ngữ',
+    'list'       => 'TRANG CHỦ',
+    'language'   => 'NGÔN NGỮ',
+    'share'      => 'CHIA SẺ',
     'logout'     => 'Đăng xuất',
     'login'      => 'Đăng nhập',
     'register'   => 'Đăng ký',
@@ -31,13 +32,17 @@ return [
 
     // Share Mail 
     'ShareMail'  => 'Nhập Gmail bạn muốn chia sẻ',
-    'EnterEmail' => 'Nhập Gmail của bạn',
+    'yourMail'   => 'Nhập Gmail của bạn',
+    'fillMail'   => 'Nhập Gmail',
+    'NoteShare'  => 'Chia sẻ cho bạn bè danh sách cần tìm và mua của bạn',
     'Send'       => 'Gửi đi',
 
     // Create Product
     'reset'      => 'Nhập lại',
     'msgTitle'   => 'Hãy điền tên sản phẩm',
     'msgContent' => 'Hãy điền mô tả sản phẩm',
+    'msgSelect'  => 'Chọn danh mục',
+    'choose'     => 'chọn',
 
     // Edit Product
     'UpdateProduct'  => 'CẬP NHẬT SẢN PHẨM',
@@ -47,12 +52,18 @@ return [
     'CategoryName'  => 'Tên danh mục',
     'save'          => 'Lưu',
     'CategoryList'  => 'Danh sách danh mục',
+    'function'      => 'Chức năng',
 
     // Login, Register
     'username' => 'Tài khoản',
     'password' => 'Mật khẩu',
     'forgot'   => 'Quên mật khẩu?',
-             //Xác Nhận Qua Gmail
+    'nameIsRequired'   => 'Vui lòng nhập họ tên',
+    'emailIsRequired'  => 'Vui lòng nhập Email',
+    'correctMail'     => 'Vui lòng nhập đúng kiểu Email',
+    'welcome'         => 'Chào mừng bạn đến với trình quản lý công việc của mình!',
+
+    //Xác Nhận Qua Gmail
     'ConfirmGmail'      => 'Xác nhận Gmail',
     'SendConfirmation'  => 'Gửi xác nhận?',
     'CreateAccount'     => 'Tạo 1 tài khoản mới',

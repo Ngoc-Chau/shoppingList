@@ -27,7 +27,7 @@ class AuthController extends Controller
         $data = $request->all();
         $login = Auth::attempt(['email' => $data['email'], 'password' =>$data['password']]);
         if($login){
-            return redirect()->route('shopping.index')->with('welcome', 'Chào mừng bạn đến với trình quản lý công việc của mình!');
+            return redirect()->route('shopping.index')->with('welcome', __('lang.welcome'));
         }else{
             return redirect()->route('auth.login')->with('msg', 'Sai tài khoản hoặc tên đăng nhập');
         }
