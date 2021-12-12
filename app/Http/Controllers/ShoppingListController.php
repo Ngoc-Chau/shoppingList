@@ -159,6 +159,8 @@ class ShoppingListController extends Controller
                 DB::table('products')->where('id', $id)->update($data);
                 Session::put('message', 'Cập nhật sản phẩm thành công');
                 return redirect('/');
+            }else {
+                $data['image'] = $request->old_image;
             }
             DB::table('products')->where('id', $id)->update($data);
             Session::put('message', 'Cập nhật sản phẩm thành công');
