@@ -19,12 +19,12 @@
     <form role="form" action="{{URL::to('/update/'.$pro->id)}}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
-            <label class="col-sm-2 col-form-label" for="title">@lang('lang.ProductName')</label>
+            <label>@lang('lang.ProductName')</label>
             <input type="text" name="title" id="title" class="form-control" value="{{$pro->title}}">
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 col-form-label" for="content">@lang('lang.description')</label>
+            <label>@lang('lang.description')</label>
             <textarea name="content" id="content" class="form-control">{{$pro->content}} </textarea>
         </div>
 
@@ -43,18 +43,16 @@
         <div class="form-group">
             <label>@lang('lang.image')</label>
             <input type="hidden" name="old_image" class="form-control" value="{{$pro->image}}">
-            <input type="file" name="product_image" class="form-control" id="image">
+            <input type="file" name="product_image" class="form-control mb-3" id="image">
             @if($pro->image=='default.png')
             @else
-                <img src="{{URL::to('/uploads/'.$pro->image)}}" height="100" width="100">
+                <img src="{{URL::to('/uploads/'.$pro->image)}}" style="object-fit: cover;" height="100" width="160">
             @endif
         </div>
-        <br>
 
         <div class="form-group">
             <div>
-                <input type="submit" class="form-control btn btn-primary col-sm-1" value="@lang('lang.update')">
-                <input type="reset" class="form-control btn btn-primary col-sm-1" value="@lang('lang.reset')">
+                <input type="submit" class="form-control btn btn-primary col-sm-2" value="@lang('lang.update')">
             </div>  
         </div>
     </form>

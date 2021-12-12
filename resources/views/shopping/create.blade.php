@@ -26,7 +26,7 @@
             @enderror
         </span>
         
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label>@lang('lang.description')</label>
             <input type="text" class="form-control" id="content" name="content">
         </div>
@@ -36,16 +36,22 @@
             @enderror
         </span>
 
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label>@lang('lang.category')</label>
             <select name="product_cate" class="form-control" id="category">
+                <option value="">-- @lang('lang.choose') --</option>
                 @foreach($cate_product as $key => $cate)
                     <option value="{{$cate->id}}">{{$cate->name_cat}}</option>
                 @endforeach
             </select>
         </div>
+        <span style="color: red">  
+            @error('product_cate')
+                {{$message}}
+            @enderror
+        </span>
 
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label>@lang('lang.image')</label>
             <input type="file" name="product_image" class="form-control" id="image">
         </div>
@@ -53,9 +59,9 @@
 
         <div class="form-group">
             <div>
-                <input type="submit" class="form-control btn btn-primary col-sm-2" value="@lang('lang.AddProduct')">
+                <input type="submit" class="form-control btn btn-primary col-sm-2" style="margin-bottom:5px" value="@lang('lang.AddProduct')">
           
-                <input type="reset" class="form-control btn btn-secondary col-sm-2" value="@lang('lang.reset')">
+                <input type="reset" class="form-control btn btn-secondary col-sm-2" style="margin-bottom:5px" value="@lang('lang.reset')">
             </div>  
         </div>
     </form>

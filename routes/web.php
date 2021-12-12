@@ -24,13 +24,15 @@ Route::namespace('Auth')->group(function(){
     Route::post('/register', 'AuthController@postRegister')->name('auth.register');
     Route::get('/logout', 'AuthController@logout')->name('auth.logout');
 
-    Route::get('/edit', 'InfomationController@edit')->name('auth.edit');
-    Route::post('/update', 'InfomationController@update')->name('auth.update');
-    Route::post('/changePass', 'InfomationController@changePass')->name('auth.changePass');
+    Route::middleware('auth')->group(function(){
+        Route::get('/edit', 'InfomationController@edit')->name('auth.edit');
+        Route::post('/update', 'InfomationController@update')->name('auth.update');
+        Route::post('/changePass', 'InfomationController@changePass')->name('auth.changePass');
 
-    Route::post('/send_mail_password', 'ResetPasswordController@sendMail')->name('auth.sendMail');
-    Route::get('/resetPass/{token}', 'ResetPasswordController@showFormPass')->name('auth.showFormPass');
-    Route::post('/resetPass', 'ResetPasswordController@resetPassword')->name('auth.resetPassword');
+        Route::post('/send_mail_password', 'ResetPasswordController@sendMail')->name('auth.sendMail');
+        Route::get('/resetPass/{token}', 'ResetPasswordController@showFormPass')->name('auth.showFormPass');
+        Route::post('/resetPass', 'ResetPasswordController@resetPassword')->name('auth.resetPassword');
+    });
 });
  
 Route::middleware('auth')->group(function(){
@@ -51,10 +53,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/delete/{idd}', 'CategoryController@destroy');
     Route::post('/category/update', 'CategoryController@category_update')->name('category_update');
     Route::get('/category/{id}', 'ShoppingListController@index_category');
-    Route::post('/category_complete',[CategoryController::class,'category_complete'])->name('category_complete');
-    Route::get('/category_uncomplete/{id}',[CategoryController::class,'category_uncomplete']);
     //route excel
-    Route::get('/export',[ExcelController::class,'export']);
+    Route::get('/export', 'ExcelController@export');
 });
 
 //Thay đổi ngôn ngữ

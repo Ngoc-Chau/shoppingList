@@ -48,29 +48,5 @@ class CategoryController extends Controller
         $model->delete();
         $request->session()->flash('message','Đã Xóa');
         return redirect('/category');
-    } 
-    public function category_complete(Request $request)
-    {
-        if($request->post('item')==null)
-        {
-            return redirect('/');
-        }
-        else{
-            foreach($request->post('item') as $re)
-            {
-                $model= Product::find($re);
-                $model->completed= '1';
-                $model->save();
-            }
-            return redirect('/');
-        }
-        
-    } 
-    public function category_uncomplete(Request $request,$id)
-    {
-        $model= Product::find($id);
-        $model->completed= '0';
-        $model->save();
-        return redirect('/');
     }
 }

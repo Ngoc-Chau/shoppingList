@@ -41,7 +41,7 @@ class ShoppingListController extends Controller
         return view('category.category_index',['resul_category'=>$resul_category,
                                                 'resul_product'=>$resul_product,
                                                 'resul_product_complete'=>$resul_product_complete,
-                                                'count'=>$count
+                                                'count'=>$count, 'cat_id'=>$id
                                                 ]);
     }
     
@@ -74,13 +74,15 @@ class ShoppingListController extends Controller
     public function postCreate(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required'
+            'title'     => 'required',
+            'content'   => 'required',
+            'product_cate' => 'required'
         ],
 
         [
-            'title.required'   => __('lang.msgTitle'),
-            'content.required' => __('lang.msgContent')
+            'title.required'        => __('lang.msgTitle'),
+            'content.required'      => __('lang.msgContent'),
+            'product_cate.required' => __('lang.msgSelect')
         ]);
         $user = Auth::user();
         $data = array();
@@ -121,9 +123,8 @@ class ShoppingListController extends Controller
         $user = Auth::user();
         $cate_product = DB::table('categorys')->orderby('id', 'desc')->get();
         $edit_product = Product::with('category')->where('products.id',$id)->get();
-        $manager_product = view('shopping.edit')->with('edit_product',$edit_product)->with('cate_product',$cate_product); 
-        //return view('list.edit')->with('manager_product',$manager_product);
-        return view('shopping.edit', ['manager_product' => $manager_product, 'edit_product' => $edit_product, 'cate_product' => $cate_product]);
+        return view('shopping.edit', ['edit_product' => $edit_product,
+                                    'cate_product' => $cate_product]);
     }
 
     /**
@@ -160,6 +161,8 @@ class ShoppingListController extends Controller
             DB::table('products')->where('id', $id)->update($data);
             Session::put('message', 'Cập nhật sản phẩm thành công');
             return redirect('/');
+        }else {
+            $data['image'] = $request->old_image;
         }
         DB::table('products')->where('id', $id)->update($data);
         Session::put('message', 'Cập nhật sản phẩm thành công');

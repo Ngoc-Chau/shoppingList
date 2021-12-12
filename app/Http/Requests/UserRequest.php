@@ -31,9 +31,9 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'            => 'Vui lòng nhập Email',
-            'email.email'               => 'Vui lòng nhập đúng kiểu Email',
-            'password.required'         => 'Vui lòng nhập mật khẩu',
+            'email.required'            => __('lang.emailIsRequired'),
+            'email.email'               => __('lang.correctMail'),
+            'password.required'         => __('lang.PasswordIsRequired'),
         ];
     }
 }

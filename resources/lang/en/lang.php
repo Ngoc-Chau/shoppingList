@@ -2,8 +2,9 @@
 
 return [
     // Header
-    'list'       => 'Purchase list',
-    'language'   => 'Language',
+    'list'       => 'HOME',
+    'language'   => 'LANGUAGE',
+    'share'      => 'SHARE',
     'logout'     => 'Logout',
     'login'      => 'login',
     'register'   => 'Register',
@@ -31,27 +32,37 @@ return [
 
     // Share Mail 
     'ShareMail'  => 'Enter Gmail you want to share',
-    'EnterEmail' => 'Enter your Gmail',
+    'yourMail'   => 'Enter your Gmail',
+    'fillMail'   => 'Enter Gmail',
+    'NoteShare'  => 'Share with your friends your to-to-see and buy lists',
     'Send'       => 'Send',
 
     // Create Product
     'reset'      => 'Reset',
     'msgTitle'   => "Enter the product's name please",
     'msgContent' => "Enter the product's description please",
+    'msgSelect'  => 'Select category',
+    'choose'     => 'choose',
 
     // Edit Product
     'UpdateProduct'  => 'UPDATE PRODUCT',
-    'update'         => 'update',
+    'update'         => 'Update',
 
     // Category
     'CategoryName'  => "Category's Name",
     'save'          => 'Save',
     'CategoryList'  => "Category's List",
+    'function'      => 'Function',
 
     // Login, Register
     'username' => 'Username',
     'password' => 'Password',
     'forgot'   => 'Forgot your password?',
+    'nameIsRequired'   => 'Please enter your name',
+    'emailIsRequired'  => 'Please enter Email',
+    'correctMail'      => 'Please enter the correct email type',
+    'welcome'          => 'Welcome to your task manager portfolio!',
+    
              //Xác Nhận Qua Gmail
     'ConfirmGmail'      => 'Confirm Gmail',
     'SendConfirmation'  => 'Send Confirmation?',
