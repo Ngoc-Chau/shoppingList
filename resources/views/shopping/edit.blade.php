@@ -49,12 +49,13 @@
                 <img src="{{URL::to('/uploads/'.$pro->image)}}" style="object-fit: cover;" height="100" width="160">
             @endif
         </div>
-
+        <input type="hidden" name="id_cat" value="{{$item}}">
         <div class="form-group">
             <div>
                 <input type="submit" class="form-control btn btn-primary col-sm-2" value="@lang('lang.update')">
             </div>  
         </div>
     </form>
+    
     @endforeach
-@stop
+    @stop

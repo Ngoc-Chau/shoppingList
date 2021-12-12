@@ -118,12 +118,14 @@ class ShoppingListController extends Controller
         return redirect("/");
     }
     
-    public function edit($id)
+    public function edit($id, $id2)
     {   
         $cate_product = DB::table('categorys')->orderby('id', 'desc')->get();
         $edit_product = Product::with('category')->where('products.id',$id)->get();
-        return view('shopping.edit', ['edit_product' => $edit_product,
-                                    'cate_product' => $cate_product]);
+        return view('shopping.edit', [  'edit_product' => $edit_product, 
+                                        'cate_product' => $cate_product,
+                                        'item' => $id2,
+                                        ]);
     }
 
     /**
@@ -135,13 +137,34 @@ class ShoppingListController extends Controller
      */
     public function postEdit(Request $request, $id)
     {
-        $user = Auth::user();
-        $u=Product::with('category')->where('user_id',$user->id)->where('id',$id)->where('completed',0)->get();
-        $a=0;
-        foreach($u as $sp)
+        if($request->post('id_cat')!=0)
         {
-            $a= $sp->cat_id;
+            $cat=$request->post('id_cat');
+            $user = Auth::user();
+            $data = array();
+            $data['title'] = $request->title;
+            $data['content'] = $request->content;
+            $data['cat_id'] = $request->product_cate;
+            $data['user_id'] = $user->id;        
+            $data['created_at'] = $request->created_at;
+            $data['image'] = $request->product_image;
+            $get_image = $request->file('product_image');
+
+            if($get_image){
+                $get_name_image = $get_image->getClientOriginalName();
+                $name_image = current(explode('.',$get_name_image));
+                $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+                $get_image->move('uploads',$new_image);
+                $data['image'] = $new_image;
+                DB::table('products')->where('id', $id)->update($data);
+                Session::put('message', 'Cập nhật sản phẩm thành công');
+                return redirect('/');
+            }
+            DB::table('products')->where('id', $id)->update($data);
+            Session::put('message', 'Cập nhật sản phẩm thành công');
+            return redirect("/category/$cat");
         }
+        $user = Auth::user();
         $data = array();
         $data['title'] = $request->title;
         $data['content'] = $request->content;
@@ -165,7 +188,7 @@ class ShoppingListController extends Controller
         }
         DB::table('products')->where('id', $id)->update($data);
         Session::put('message', 'Cập nhật sản phẩm thành công');
-        return redirect("/category/$a");
+        return redirect("/");
     }
 
     public function searchProduct(Request $request) {

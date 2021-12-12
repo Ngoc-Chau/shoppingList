@@ -52,13 +52,34 @@
                         <li class="nav-item">
                             <a href="{{ route('shopping.index') }}" class="nav-link px-2 link-secondary">@lang('lang.list')</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-2" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">@lang('lang.language')</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/en')}}">@lang('lang.English')</a></li>
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/ja')}}">@lang('lang.Japanese')</a></li>
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/vi')}}">@lang('lang.Vietnamese')</a></li>
-                            </ul>
+                        <li>
+                            <!-- Đa ngôn ngữ -->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">@lang('lang.language')
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{url('lang/en')}}">
+                                            <img src="https://img.icons8.com/color/32/000000/great-britain-circular.png"/>
+                                            @lang('lang.English')
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('lang/ja')}}">
+                                            <img src="https://img.icons8.com/color/32/000000/japan-circular.png"/>
+                                            @lang('lang.Japanese')
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('lang/vi')}}">
+                                            <img src="https://img.icons8.com/color/32/000000/vietnam-circular.png"/>
+                                            @lang('lang.Vietnamese')
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+<!-- Đa ngôn ngữ -->
                         </li>
                         <li class="nav-item"><a class="nav-link px-2 link-dark" data-toggle="modal" data-target="#myShare">@lang('lang.share') <i class='fa fa-share-alt-square'></i></a></li>
                     </ul>
