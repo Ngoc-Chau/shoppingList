@@ -6,8 +6,34 @@
 @endpush
 
 @push('scripts')
-
-
+    <script type="text/javascript">
+        $(function(){
+            //Reset input file
+            $('input[type="file"][name="product_image"]').val('');
+            //Image preview
+            $('input[type="file"][name="product_image"]').on('change', function(){
+                var img_path = $(this)[0].value;
+                var img_holder = $('.img-holder');
+                var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
+                if(extension == 'jpeg' || extension == 'jpg' || extension == 'png' || extension == 'gif'){
+                    if(typeof(FileReader) != 'undefined'){
+                        img_holder.empty();
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            $('<img/>',{'src':e.target.result,'class':'img-fluid','style':'max-width:150px;margin-bottom:10px;'}).appendTo(img_holder);
+                        }
+                        img_holder.show();
+                        reader.readAsDataURL($(this)[0].files[0]);
+                        $('.old_image').empty();
+                    }else{
+                        $(img_holder).html('This browser does not support FileReader');
+                    }
+                }else{
+                    $(img_holder).empty();
+                }
+            })
+        })
+    </script>
 @endpush
 
 @section('content')
@@ -44,11 +70,11 @@
             <label>@lang('lang.image')</label>
             <input type="hidden" name="old_image" class="form-control" value="{{$pro->image}}">
             <input type="file" name="product_image" class="form-control mb-3" id="image">
-            @if($pro->image=='default.png')
-            @else
+            <div class="old_image">
                 <img src="{{URL::to('/uploads/'.$pro->image)}}" style="object-fit: cover;" height="100" width="160">
-            @endif
+            </div>
         </div>
+        <div class="img-holder"></div>
         <input type="hidden" name="id_cat" value="{{$item}}">
         <div class="form-group">
             <div>

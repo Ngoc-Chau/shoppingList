@@ -57,23 +57,17 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-2" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">@lang('lang.language')</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li> 
-                                    <a href="{{url('lang/en')}}">
-                                        <img src="https://img.icons8.com/color/32/000000/great-britain-circular.png"/> 
-                                        @lang('lang.English')
-                                    </a>
+                                <li><a class="dropdown-item mb-1" href="{{url('lang/en')}}">
+                                    <img src="https://img.icons8.com/color/32/000000/great-britain-circular.png"/>
+                                    @lang('lang.English')</a>
                                 </li>
-                                <li>
-                                    <a href="{{url('lang/ja')}}">
-                                        <img src="https://img.icons8.com/color/32/000000/japan-circular.png"/>
-                                        @lang('lang.Japanese')
-                                    </a>
+                                <li><a class="dropdown-item mb-1" href="{{url('lang/ja')}}">
+                                    <img src="https://img.icons8.com/color/32/000000/japan-circular.png"/>
+                                    @lang('lang.Japanese')</a>
                                 </li>
-                                <li>
-                                    <a href="{{url('lang/vi')}}">
-                                        <img src="https://img.icons8.com/color/32/000000/vietnam-circular.png"/>
-                                        @lang('lang.Vietnamese')
-                                    </a>
+                                <li><a class="dropdown-item mb-1" href="{{url('lang/vi')}}">
+                                    <img src="https://img.icons8.com/color/32/000000/vietnam-circular.png"/>  
+                                    @lang('lang.Vietnamese')</a>
                                 </li>
                             </ul>
                         </li>

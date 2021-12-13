@@ -23,15 +23,13 @@ Route::namespace('Auth')->group(function(){
     Route::get('/register', 'AuthController@register')->name('auth.register');
     Route::post('/register', 'AuthController@postRegister')->name('auth.register');
     Route::get('/logout', 'AuthController@logout')->name('auth.logout');
-
+    Route::post('/send_mail_password', 'ResetPasswordController@sendMail')->name('auth.sendMail');
+    Route::get('/resetPass/{token}', 'ResetPasswordController@showFormPass')->name('auth.showFormPass');
+    Route::post('/resetPass', 'ResetPasswordController@resetPassword')->name('auth.resetPassword');
     Route::middleware('auth')->group(function(){
         Route::get('/edit', 'InfomationController@edit')->name('auth.edit');
         Route::post('/update', 'InfomationController@update')->name('auth.update');
         Route::post('/changePass', 'InfomationController@changePass')->name('auth.changePass');
-
-        Route::post('/send_mail_password', 'ResetPasswordController@sendMail')->name('auth.sendMail');
-        Route::get('/resetPass/{token}', 'ResetPasswordController@showFormPass')->name('auth.showFormPass');
-        Route::post('/resetPass', 'ResetPasswordController@resetPassword')->name('auth.resetPassword');
     });
 });
  

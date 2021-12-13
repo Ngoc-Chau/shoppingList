@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Category;
 use App\Models\Product;
-use Session;
-session_start();
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
@@ -85,7 +83,7 @@ class ShoppingListController extends Controller
             'product_cate.required' => __('lang.msgSelect')
         ]);
         $user = Auth::user();
-        $data = array();
+        $data = new Product;
         $data['title'] = $request->title;
         $data['content'] = $request->content;
         $data['cat_id'] = $request->product_cate;
@@ -100,21 +98,17 @@ class ShoppingListController extends Controller
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('uploads',$new_image);
             $data['image'] = $new_image;
-            Product::insert($data);
-            Session::put('message', 'Thêm sản phẩm thành công');
+            $data->save();
+            Session::flash('message', 'Thêm sản phẩm thành công');
             return redirect("/");
         }
-        if($get_image==null)
+        else
         {   
             $new_image='default.png';
             $data['image']=$new_image;
         }
-        else
-        {
-            $data['image'] = '';
-        }
-        Product::insert($data);
-        Session::put('message', 'Thêm sản phẩm thành công');
+        $data->save();
+        Session::flash('message', 'Thêm sản phẩm thành công');
         return redirect("/");
     }
     

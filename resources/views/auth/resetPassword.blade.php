@@ -55,7 +55,7 @@
             <p style="color:red;">{{ Session::get('msg') }}</p>
         @endif
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-bottom: 11.5rem!important;">
         <div class="col-sm-4">
             <form id="resetPassword" action="{{ route('auth.resetPassword') }}" method="POST">
                 @csrf
