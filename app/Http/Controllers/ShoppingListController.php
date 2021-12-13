@@ -54,7 +54,7 @@ class ShoppingListController extends Controller
             $message->to($data)->subject($title);
             $message->from($data,$title);
         });
-        return redirect()->back()->with('msg', 'Bạn đã chia sẻ danh sách thành công!');
+        return redirect()->back()->with('msg', __('lang.SharedSuccessfully'));
     }
 
     public function create()
@@ -99,7 +99,7 @@ class ShoppingListController extends Controller
             $get_image->move('uploads',$new_image);
             $data['image'] = $new_image;
             $data->save();
-            Session::flash('message', 'Thêm sản phẩm thành công');
+            Session::flash('message', __('lang.AddSuccessfully'));
             return redirect("/");
         }
         else
@@ -108,7 +108,7 @@ class ShoppingListController extends Controller
             $data['image']=$new_image;
         }
         $data->save();
-        Session::flash('message', 'Thêm sản phẩm thành công');
+        Session::flash('message', __('lang.AddSuccessfully'));
         return redirect("/");
     }
     
@@ -151,13 +151,13 @@ class ShoppingListController extends Controller
                 $get_image->move('uploads',$new_image);
                 $data['image'] = $new_image;
                 Product::where('id', $id)->update($data);
-                Session::put('message', 'Cập nhật sản phẩm thành công');
+                Session::put('message', __('lang.UpdateSuccessfully'));
                 return redirect('/');
             }else {
                 $data['image'] = $request->old_image;
             }
             Product::where('id', $id)->update($data);
-            Session::put('message', 'Cập nhật sản phẩm thành công');
+            Session::put('message', __('lang.UpdateSuccessfully'));
             return redirect("/category/$cat");
         }
         $user = Auth::user();
@@ -177,13 +177,13 @@ class ShoppingListController extends Controller
             $get_image->move('uploads',$new_image);
             $data['image'] = $new_image;
             Product::where('id', $id)->update($data);
-            Session::put('message', 'Cập nhật sản phẩm thành công');
+            Session::put('message', __('lang.UpdateSuccessfully'));
             return redirect('/');
         }else {
             $data['image'] = $request->old_image;
         }
         Product::where('id', $id)->update($data);
-        Session::put('message', 'Cập nhật sản phẩm thành công');
+        Session::put('message', __('lang.UpdateSuccessfully'));
         return redirect("/");
     }
 
@@ -219,7 +219,7 @@ class ShoppingListController extends Controller
     {
         $model= Product::find($id);
         $model->delete();
-        $request->session()->flash('message','Đã Xóa');
+        $request->session()->flash('message', __('lang.DeleteSuccessfully'));
         return redirect()->back();
     }
 

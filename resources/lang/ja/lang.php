@@ -27,6 +27,7 @@ return [
     'edit'         => '編集',
     'delete'       => '消去',
     'WannaDelete'  => '消去してもよろしいですか？',
+    'ExportExcel'  => 'Excelにエクスポートしますか？',
     'msgProduct'   => '製品はありません',
     'completed'    => '完了',
     'DeleteAll'    => '選択を削除します',
@@ -65,7 +66,7 @@ return [
     'nameIsRequired'  => 'お名前を入力してください',
     'emailIsRequired' => 'メールアドレスを入力してください',
     'correctMail'     => '正しいタイプのメールアドレスを入力してください',
-    'welcome'         => 'タスクマネージャーポートフォリオへようこそ！',
+    'welcome'         => 'ショッピングリストマネージャーへようこそ！',
 
     //Xác Nhận Qua Gmail
     'ConfirmGmail'      => 'Gmailの確認',
@@ -90,4 +91,35 @@ return [
     // ConfirmMail.blade
     'ClickOnTheLink'         => 'リンクをクリックしてください',
     'RequestToGetAPassword'  => 'パスワードのリクエストを送信しました',   
+
+    // AuthController
+    'WrongAccount'     => '間違ったアカウントまたはユーザー名',
+    'EmailAlreadyUsed' => 'すでに使用されているメールアドレス、別のメールアドレスを入力してください',
+    'Error401'         => '401.エラー',
+
+    // InformationController
+    'NotBlank'           => '空白のままにしたり、現在の名前を複製したりしないでください。!',
+    'UpdateSuccessfully' => '正常に更新されました !',
+
+    // ResetPassword.blade + ResetPasswordController
+    'YourNewPassword'         => 'パスワードを入力してください',
+    'Successfully_CheckGmail' => 'リクエストは正常に送信されました。Gmailをチェックして確認してください。',
+    'Error_NoInfor'           => 'エラーが発生しました。情報が見つかりませんでした。',
+    'PasswordChanged'         => 'パスワードが無事変更されました!',
+    'Error_ChangingPassword'  => 'パスワードの変更中にエラーが発生しました。',
+
+    // CategoryController
+    'AddSuccessfully'    => '追加に成功しました!',
+    'EditSuccessfully'   => '編集に成功しました!',
+    'DeleteSuccessfully' => '正常に削除されました!',
+
+    //ShoppingListController
+    'SharedSuccessfully' => 'リストを正常に共有しました!',
+    
+    // ShareMail.blade 
+    'OrderConfirmation' => '注文確認',
+    'AutomatedEmail'    => 'これは、顧客が共有するときの自動メールです。 このメールには返信しないでください。',
+    'ListShared'        => '次の情報であなたのために共有されたリスト:',
+    'SharerInformation' => '共有者情報',
+
 ];

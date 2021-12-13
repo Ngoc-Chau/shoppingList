@@ -76,13 +76,27 @@
                     <div class="d-flex">
                         @if(Auth::check())
                         <ul class="navbar-nav ">
-                            <li class="nav-item"><a href="{{ route('auth.edit') }}" class="nav-link px-2 link-dark">{{ Auth::user()->name }}</a></li>
-                            <li class="nav-item"><a href="{{ route('auth.logout') }}" class="btn btn-outline-light px-2 ml-2 me-2"><i class="fa fa-btn fa-sign-out"></i>@lang('lang.logout')</a></li>
+                            <li class="nav-item">
+                                <a href="{{ route('auth.edit') }}" class="nav-link px-2 link-dark">{{ Auth::user()->name }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('auth.logout') }}" class="btn btn-outline-light px-2 ml-2 me-2">
+                                    <i class="fa fa-btn fa-sign-out"></i>@lang('lang.logout')
+                                </a>
+                            </li>
                         </ul>
                         @else
                         <ul class="navbar-nav ">
-                            <li class="nav-item"><a href="{{ route('auth.login') }}" class="btn btn-outline-light px-2 me-2">@lang('lang.login')</a></li>
-                            <li class="nav-item"><a href="{{ route('auth.register') }}" class="btn btn-link text-white px-2 ml-2">@lang('lang.register')</a></li>
+                            <li class="nav-item">
+                                <a href="{{ route('auth.login') }}" class="btn btn-outline-light px-2 me-2">
+                                    @lang('lang.login')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('auth.register') }}" class="btn btn-link text-white px-2 ml-2">
+                                    @lang('lang.register')
+                                </a>
+                            </li>
                         </ul>
                         @endif
                     </div>

@@ -31,7 +31,7 @@
         </div>
 		<div class="container" style="background-color:white">
 			<h2 class="note"><b><i>
-				<p>@lang('lang.Please click on the link'): <a target="_blank" href="{{ $url }}">{{ $url }}</a>
+				<p>@lang('lang.ClickOnTheLink'): <a target="_blank" href="{{ $url }}">{{ $url }}</a>
 			</i></b></h2> 
 		</div>
 		<div class="container">
