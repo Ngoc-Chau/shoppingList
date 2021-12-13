@@ -18,6 +18,7 @@ return [
     'ShoppingList' => 'SHOPPING LIST',
     'all'          => 'All',
     'search'       => 'Search',
+    'findSearch'   => 'Please enter what you want to search!',
     'AddProduct'   => 'Add product',
     'print'        => 'Print List',
     'image'        => 'Image',
@@ -48,6 +49,7 @@ return [
     'msgContent' => "Enter the product's description please",
     'msgSelect'  => 'Select category',
     'choose'     => 'choose',
+    'addCat'     => 'Create a category before adding products!',
 
     // Edit Product
     'UpdateProduct' => 'UPDATE PRODUCT',
@@ -115,6 +117,7 @@ return [
 
     //ShoppingListController
     'SharedSuccessfully' => 'You have successfully shared the list!',
+    'BuyProduct'         => 'Products to buy',
     
     // ShareMail.blade 
     'OrderConfirmation' => 'Order confirmation',

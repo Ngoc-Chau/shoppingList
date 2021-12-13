@@ -18,6 +18,7 @@ return [
     'ShoppingList' => 'DANH SÁCH MUA HÀNG',
     'all'          => 'Tất cả',
     'search'       => 'Tìm kiếm',
+    'findSearch'   => 'Vui lòng nhập nội dung muốn tìm kiếm!',
     'AddProduct'   => 'Thêm sản phẩm',
     'print'        => 'In danh sách',
     'image'        => 'Hình ảnh',
@@ -48,6 +49,7 @@ return [
     'msgContent' => 'Hãy điền mô tả sản phẩm',
     'msgSelect'  => 'Chọn danh mục',
     'choose'     => 'chọn',
+    'addCat'     => 'Hãy tạo danh mục trước khi thêm sản phẩm!',
 
     // Edit Product
     'UpdateProduct' => 'CẬP NHẬT SẢN PHẨM',
@@ -115,6 +117,7 @@ return [
 
     //ShoppingListController
     'SharedSuccessfully' => 'Bạn đã chia sẻ danh sách thành công!',
+    'BuyProduct'         => 'Sản phẩm cần mua',
 
     // ShareMail.blade 
     'OrderConfirmation' => 'Xác nhận đơn hàng',

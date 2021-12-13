@@ -54,12 +54,17 @@ class ShoppingListController extends Controller
             $message->to($data)->subject($title);
             $message->from($data,$title);
         });
-        return redirect()->back()->with('msg', __('lang.SharedSuccessfully'));
+        return redirect()->back()->with('message', __('lang.SharedSuccessfully'));
     }
 
     public function create()
-    {
-        $cate_product = Category::orderby('id', 'desc')->get();
+    {   
+        $user   = Auth::user();
+        $count = Category::where('user_id', $user->id)->count();
+        if($count == 0){
+            return redirect()->back()->with('message', __('lang.addCat'));
+        }
+        $cate_product = Category::orderby('id', 'desc')->where('user_id', $user->id)->get();
         return view('shopping.create')->with('cate_product', $cate_product);
     }
 
@@ -190,17 +195,22 @@ class ShoppingListController extends Controller
     public function searchProduct(Request $request) {
         $user = Auth::user();
         $data = $request->search;
-        $resul_product = Product::with('category')->where('title', 'like', "%{$data}%")
-                                                    ->where('user_id',$user->id)
-                                                    ->where('completed','0')->get();
-        $resul_product_complete= Product::with('category')->where('title', 'like', "%{$data}%")
-                                                    ->where('completed','1')
-                                                    ->where('user_id',$user->id)->get();
-        $count= $resul_product_complete->count();
-        return view('shopping.searchProduct',['resul_product'=>$resul_product,
-                                        'resul_product_complete'=>$resul_product_complete,
-                                        'count'=>$count, 'data'=>$data,
-                                        ]);
+        if($data == "") {
+            return redirect()->back()->with('message', __('lang.findSearch'));
+        }
+        else {
+            $resul_product = Product::with('category')->where('title', 'like', "%{$data}%")
+                                                        ->where('user_id',$user->id)
+                                                        ->where('completed','0')->get();
+            $resul_product_complete= Product::with('category')->where('title', 'like', "%{$data}%")
+                                                        ->where('completed','1')
+                                                        ->where('user_id',$user->id)->get();
+            $count= $resul_product_complete->count();
+            return view('shopping.searchProduct',['resul_product'=>$resul_product,
+                                            'resul_product_complete'=>$resul_product_complete,
+                                            'count'=>$count, 'data'=>$data,
+                                            ]);
+        }
     }
 
     public function productCompleted(Request $request)

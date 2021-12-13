@@ -16,13 +16,11 @@ class ExcelController extends Controller
     {
         $user = Auth::user();
         $stt= 1;
-        return (new FastExcel(Product::join('categorys','categorys.id','=','products.cat_id')
-        ->where('products.user_id',$user->id)->where('completed','0')->get()))
-        ->download('danhsach.xlsx',function($product){
+        return (new FastExcel(Product::join('categorys','categorys.id','=','products.cat_id')->where('products.user_id',$user->id)->where('completed','0')->get()))->download('danhsach.xlsx',function($product){
             return [
-                @lang('lang.ProductName') => $product->title,
-                @lang('lang.description') => $product->content,
-                @lang('lang.category')    => $product->name_cat,
+                'Tên Sản Phẩm' => $product->title,
+                'Mô Tả' => $product->content,
+                'Loại Sản Phẩm' => $product->name_cat,
             ];
         });
     }

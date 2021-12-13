@@ -20,6 +20,9 @@ class AuthController extends Controller
 
     //LOGIN
     public function login() {
+        if(!empty(Auth::user())){
+            return redirect()->back();
+        }
         return view('auth.login');
     }
 
@@ -30,7 +33,7 @@ class AuthController extends Controller
             return redirect()->route('shopping.index')->with('welcome', __('lang.welcome'));
         }
         else {
-            return redirect()->route('auth.login')->with('msg', __(lang.'WrongAccount '));
+            return redirect()->route('auth.login')->with('msg', __('lang.WrongAccount'));
         }
     }
 
@@ -45,7 +48,7 @@ class AuthController extends Controller
         $users = User::all();
         foreach ($users as $user) {
             if($data['email'] == $user['email']) {
-                return redirect()->back()->with('msg', __(lang.'EmailAlreadyUsed'));
+                return redirect()->back()->with('msg', __('lang.EmailAlreadyUsed'));
             }
         }
         $data['password'] = Hash::make($data['password']);
@@ -54,14 +57,14 @@ class AuthController extends Controller
         if($data) {
             $login = Auth::attempt(['email' => $login['email'], 'password' => $login['password']]);
             if($login) {
-                return redirect()->route('shopping.index')->with('welcome', __(lang.'welcome'));
+                return redirect()->route('shopping.index')->with('welcome', __('lang.welcome'));
             }
             else {
-                return redirect()->route('auth.login')->with('msg', __(lang.'WrongAccount'));
+                return redirect()->route('auth.login')->with('msg', __('lang.WrongAccount'));
             }
         }
         else {
-            return redirect()->route('auth.register')->with('msg', __(lang.'Error401'));
+            return redirect()->route('auth.register')->with('msg', __('lang.Error401'));
         }
     }
 
