@@ -18,6 +18,7 @@ return [
     'ShoppingList' => '購入リスト',
     'all'          => '全て',
     'search'       => '検索',
+    'findSearch'   => '検索したいものを入力してください!',
     'AddProduct'   => 'その他の製品',
     'print'        => 'リストを印刷する',
     'image'        => '画像',
@@ -48,6 +49,7 @@ return [
     'msgContent' => '製品の説明を記入してください',
     'msgSelect'  => 'カテゴリを選んでください',
     'choose'     => '選ぶ',
+    'addCat'     => '商品を追加する前にカテゴリを作成してください!',
 
     // Edit Product
     'UpdateProduct' => '使用済み製品',
@@ -115,6 +117,7 @@ return [
 
     //ShoppingListController
     'SharedSuccessfully' => 'リストを正常に共有しました!',
+    'BuyProduct'         => '購入する製品',
     
     // ShareMail.blade 
     'OrderConfirmation' => '注文確認',

@@ -21,11 +21,11 @@
 				<div class="col-md-12">
 					<p style="color:#fff;font-size: 17px;"> @lang('lang.ListShared') </p>
 					<h4 style="color: #000;text-transform: uppercase;"> @lang('lang.SharerInformation') </h4>
-					<p>Họ và tên : <span style="color:#fff">{{$user->name}}</span></p>
+					<p>@lang('lang.fullname') : <span style="color:#fff">{{$user->name}}</span></p>
 					<p>Email : <span style="color:#fff">{{$user->email}}</span></p>	
                     
                     <h4 style="color: #000;text-transform: uppercase;">Shopping List</h4>
-					<p>Sản phẩm cần mua</p>
+					<p>@lang('lang.BuyProduct')</p>
                     <hr>
 					<table class="table table-striped" style="border:1px">
 						<thead>

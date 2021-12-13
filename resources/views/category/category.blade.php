@@ -21,6 +21,9 @@
                 @error('name_cat')
                     <p style="color: red">{{$message}}</p>
                 @enderror
+                @if(Session::has('message'))
+                    <p style="color:red;">{{ Session::get('message') }}</p>
+                @endif
                 <input type="text" class="form-control" id="product" name="name_cat">
             </div>
             <button type="submit" class="btn btn-primary">@lang('lang.save') </button>

@@ -22,11 +22,11 @@ class InfomationController extends Controller
     public function update(Request $request) {
         $data = $request->all();
         if($data['name'] == '' || $data['name'] == Auth::user()->name) {
-            return redirect()->back()->with('msg', __(lang.'NotBlank'));
+            return redirect()->back()->with('msg', __('lang.NotBlank'));
         }
         $user = User::find(Auth::user()->id);
         $data = $user->fill($data)->save();
-        return redirect()->route('auth.edit')->with('msg', __(lang.'UpdateSuccessfully'));
+        return redirect()->route('auth.edit')->with('msg', __('lang.UpdateSuccessfully'));
     }
     
     public function changePass(Request $request) {
@@ -37,10 +37,10 @@ class InfomationController extends Controller
             $data['password'] = Hash::make($data['password']);
             $user = User::find(Auth::user()->id);
             $data = $user->fill($data)->save();
-            return redirect()->route('auth.edit')->with('msg', __(lang.'UpdateSuccessfully'));
+            return redirect()->route('auth.edit')->with('msg', __('lang.UpdateSuccessfully'));
         }
         else {
-            return redirect()->back()->with('msg', __(lang.'CurrentPasswordPlease')');
+            return redirect()->back()->with('msg', __('lang.CurrentPasswordPlease'));
         }
     }
 }
