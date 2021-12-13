@@ -27,7 +27,7 @@
             <a href="{{ route('shopping.index') }}" class="btn btn-secondary">@lang('lang.back')</a>
         </form>
     </div>
-    <div class="table" style="margin-bottom: 5rem!important;">
+    <div class="table" style="margin-bottom: 18rem!important;">
         <table class="table">
             <tr>
                 <th class="col-sm-6">@lang('lang.CategoryList')</th>
