@@ -122,8 +122,8 @@
         </div>
     </form>
     <div class="row justify-content-center">
-        @if(Session::has('msg'))
-            <p style="color:red;">{{ Session::get('msg') }}</p>
+        @if(Session::has('message'))
+            <p style="color:red;">{{ Session::get('message') }}</p>
         @endif
     </div>
 
@@ -134,11 +134,6 @@
         <div class="mb-3 ml-2">
            <a href="{{url('export')}}" class="btn btn-info me-2" onclick="return confirm('Bạn có muốn xuất ra Excel không?')"><i class="fa fa-file-excel-o"></i></a>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        @if(Session::has('msg'))
-            <p style="color:red;">{{ Session::get('msg') }}</p>
-        @endif
     </div>
     <div class="table-responsive mb-3">
         <table class="table">
