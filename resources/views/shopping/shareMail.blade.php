@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Xác nhận đơn hàng</title>
+	<title> @lang('lang.OrderConfirmation') </title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 	<div class="container" style="background: #222;border-radius: 12px;padding:15px;">
 		<div class="col-md-12" >
 
-			<p style="text-align: center;color: #fff">Đây là email tự động khi khách hàng chia sẻ. Vui lòng không trả lời email này.</p>
+			<p style="text-align: center;color: #fff"> @lang('lang.AutomatedEmail') </p>
 			<div class="row" style="background: cadetblue;padding: 15px">
 
 				
@@ -19,8 +19,8 @@
 				</div>
 				
 				<div class="col-md-12">
-					<p style="color:#fff;font-size: 17px;">Danh sách chia sẻ cho bạn với thông tin như sau:</p>
-					<h4 style="color: #000;text-transform: uppercase;">Thông tin người chia sẻ</h4>
+					<p style="color:#fff;font-size: 17px;"> @lang('lang.ListShared') </p>
+					<h4 style="color: #000;text-transform: uppercase;"> @lang('lang.SharerInformation') </h4>
 					<p>Họ và tên : <span style="color:#fff">{{$user->name}}</span></p>
 					<p>Email : <span style="color:#fff">{{$user->email}}</span></p>	
                     
@@ -30,9 +30,9 @@
 					<table class="table table-striped" style="border:1px">
 						<thead>
 							<tr>
-								<th>Sản phẩm</th>
-								<th>Mô tả</th>
-								<th>Loại sản phẩm</th>
+								<th> @lang('lang.ProductName') </th>
+								<th> @lang('lang.description') </th>
+								<th> @lang('lang.category') </th>
 							</tr>
 						</thead>
 

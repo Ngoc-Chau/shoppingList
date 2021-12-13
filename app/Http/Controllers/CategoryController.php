@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $model->name_cat=$request->post('name_cat');
         $model->user_id=$user->id;
         $model->save();
-        $request->session()->flash('mess','Đã Thêm Thành Công');
+        $request->session()->flash('mess', __(lang.'AddSuccessfully'));
         $resul_category= Category::where('user_id',$user->id)->get();
         return redirect('/');
     } 
@@ -39,14 +39,14 @@ class CategoryController extends Controller
         $model= Category::find($request->post('id'));
         $model->name_cat=$request->post('name_cat');
         $model->save();
-        $request->session()->flash('message','Đã Sửa');
+        $request->session()->flash('message', __(lang.'EditSuccessfully'));
         return redirect('/category');
     } 
     public function destroy(Request $request, $id)
     {
         $model= Category::find($id);
         $model->delete();
-        $request->session()->flash('message','Đã Xóa');
+        $request->session()->flash('message', __(lang.'DeleteSuccessfully'));
         return redirect('/category');
     }
 }

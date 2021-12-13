@@ -30,7 +30,7 @@ class AuthController extends Controller
             return redirect()->route('shopping.index')->with('welcome', __('lang.welcome'));
         }
         else {
-            return redirect()->route('auth.login')->with('msg', 'Sai tài khoản hoặc tên đăng nhập');
+            return redirect()->route('auth.login')->with('msg', __(lang.'WrongAccount '));
         }
     }
 
@@ -45,23 +45,23 @@ class AuthController extends Controller
         $users = User::all();
         foreach ($users as $user) {
             if($data['email'] == $user['email']) {
-                return redirect()->back()->with('msg', 'Email đã được sử dụng, vui lòng nhập email khác');
+                return redirect()->back()->with('msg', __(lang.'EmailAlreadyUsed'));
             }
         }
         $data['password'] = Hash::make($data['password']);
         $user = new User;
         $data = $user->fill($data)->save();
         if($data) {
-            $login = Auth::attempt(['email' => $login['email'], 'password' =>$login['password']]);
+            $login = Auth::attempt(['email' => $login['email'], 'password' => $login['password']]);
             if($login) {
-                return redirect()->route('shopping.index')->with('welcome', 'Chào mừng bạn đến với trình quản lý công việc của mình!');
+                return redirect()->route('shopping.index')->with('welcome', __(lang.'welcome'));
             }
             else {
-                return redirect()->route('auth.login')->with('msg', 'Sai tài khoản hoặc tên đăng nhập');
+                return redirect()->route('auth.login')->with('msg', __(lang.'WrongAccount'));
             }
         }
         else {
-            return redirect()->route('auth.register')->with('msg', 'Mã lỗi 401');
+            return redirect()->route('auth.register')->with('msg', __(lang.'Error401'));
         }
     }
 

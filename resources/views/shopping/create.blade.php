@@ -65,6 +65,7 @@
             </div>  
         </div>
     </form>
+    
     <script type="text/javascript">
         $(function(){
             //Reset input file

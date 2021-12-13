@@ -62,14 +62,14 @@
                     console.log(data);
                     location.reload();
                 },
-                error: function() {
+                error: function() {  
                     console.log("Có lỗi xảy ra, vui lòng thử lại.");
                 }
             });
         }
 
         function deleteALl() {
-            var confirmDel = confirm("Bạn chắc chắn muốn xóa đã chọn không?");
+            var confirmDel = confirm('@lang('lang.WannaDelete')');
             if(confirmDel == true) {
                 var allVals = [];
                 $('.checkboxItem:checked').each(function() {
@@ -155,7 +155,7 @@
                     <td class="col-sm-2">{{$sp->category->name_cat}}</td>
                     <td class="col-sm-2 text-center">
                         <a href="{{ url('edit')}}/{{$sp->id}}/{{$sp->cat_id}}" class="btn" style="margin: 0 4px 4px 0;"><i class="fa fa-edit" style="font-size:24px"></i></a>
-                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
+                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('@lang('lang.WannaDelete')')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
                     </td>
                     @empty
                     <td colspan="6" style="color: red;">@lang('lang.msgProduct')</td>
@@ -195,10 +195,10 @@
                     <td class="col-sm-2" style="text-decoration: line-through; color: #80868b!important;">{{$sp->category->name_cat}}</td>
                     <td class="col-sm-2 text-center">
                         <a href="{{ url('category_uncomplete')}}/{{$sp->id}} " class="btn" style="margin: 0 4px 4px 0;"><i class="fa fa-mail-reply"></i></a>
-                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
+                        <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('@lang('lang.WannaDelete')')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
                     </td>
                     @empty
-                    <td colspan="6" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
+                    <td colspan="6" style="color: red;"> @lang('lang.msgTotalProduct') </td>
                 </tr>
                 @endforelse
             </table>

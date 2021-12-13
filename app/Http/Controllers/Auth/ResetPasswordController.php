@@ -34,13 +34,13 @@ class ResetPasswordController extends Controller
         
         //update remember_token
         $user->update(['remember_token' => $token]);
-        return redirect()->back()->with('msg','Gửi yêu cầu thành công, hay qua gmail để xác nhận!');
+        return redirect()->back()->with('msg', __(lang.'Successfully_CheckGmail'));
     }
 
     public function showFormPass($token) {
         $user = User::where('remember_token', $token)->first();
         if(!$user) {
-            return redirect()->route('auth.login')->with('msg', 'Đã có lỗi, không thể tìm thấy thông tin của bạn!');
+            return redirect()->route('auth.login')->with('msg', __(lang.'Error_NoInfor'));
         }
         return view('auth.resetPassword', ['token' => $token]);
     }
@@ -51,10 +51,10 @@ class ResetPasswordController extends Controller
         $data['password'] = Hash::make($data['password']);
         $user->update(['password' => $data['password']]);
         if($user) {
-            return redirect()->route('auth.login')->with('msg', 'Bạn đã thay đổi mật khẩu thành công!');
+            return redirect()->route('auth.login')->with('msg', __(lang.'PasswordChanged'));
         }
         else {
-            return redirect()->back()->with('msg', 'Đã có lỗi khi thay đổi mật khẩu!');
+            return redirect()->back()->with('msg', __(lang.'Error_ChangingPassword'));
         }
     }
 }
