@@ -198,7 +198,7 @@
                         <a href="{{ url('destroy')}}/{{$sp->id}}" class="btn" onclick="return confirm('Bạn chắc chắn muốn xóa không?')" style="margin: 0 4px 4px 0;"><i class="fa fa-trash" style="font-size:24px"></i></a>
                     </td>
                     @empty
-                    <td colspan="6" style="color: red;">Chưa có sản phẩm nào được tìm thấy hoặc mua</td>
+                    <td colspan="6" style="color: red;"> @lang('lang.msgTotalProduct') </td>
                 </tr>
                 @endforelse
             </table>

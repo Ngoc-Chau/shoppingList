@@ -11,24 +11,28 @@ return [
     'English'    => 'English',
     'Japanese'   => 'Japanese',
     'Vietnamese' => 'Vietnamese',
+    'share'      => 'Share',
+    'ShareFriend' => 'Share with your friend your purchase list',
 
     // Product Index
     'ShoppingList' => 'SHOPPING LIST',
     'all'          => 'All',
     'search'       => 'Search',
     'AddProduct'   => 'Add product',
+    'print'        => 'Print List',
     'image'        => 'Image',
     'ProductName'  => "Product's name",
     'description'  => 'Description',
     'category'     => 'Category',
     'edit'         => 'Edit',
     'delete'       => 'Delete',
+    'WannaDelete'  => 'Do you want to delete it?',
     'msgProduct'   => 'No products',
     'completed'    => 'Completed',
     'DeleteAll'    => 'Delete All',
     'TotalProduct' => 'Total selected product',
     'undo'         => 'Undo',
-    'msgTotalProduct'  => 'No products are found or purchased',
+    'msgTotalProduct'=> 'No products are found or purchased',
 
     // Share Mail 
     'ShareMail'  => 'Enter Gmail you want to share',
@@ -45,8 +49,8 @@ return [
     'choose'     => 'choose',
 
     // Edit Product
-    'UpdateProduct'  => 'UPDATE PRODUCT',
-    'update'         => 'Update',
+    'UpdateProduct' => 'UPDATE PRODUCT',
+    'update'        => 'Update',
 
     // Category
     'CategoryName'  => "Category's Name",
@@ -64,12 +68,12 @@ return [
     'welcome'          => 'Welcome to your task manager portfolio!',
     
              //Xác Nhận Qua Gmail
-    'ConfirmGmail'      => 'Confirm Gmail',
-    'SendConfirmation'  => 'Send Confirmation?',
-    'CreateAccount'     => 'Create a new account',
-    'fullname'          => 'Fullname',
-    'Re_EnterPassword'  => 'Re-Enter the password',
-    'back'              => 'Back',
+    'ConfirmGmail'     => 'Confirm Gmail',
+    'SendConfirmation' => 'Send Confirmation?',
+    'CreateAccount'    => 'Create a new account',
+    'fullname'         => 'Fullname',
+    'Re_EnterPassword' => 'Re-Enter the password',
+    'back'             => 'Back',
 
     // Information.blade
     'YourInfor'       => 'Your information',

@@ -11,24 +11,28 @@ return [
     'English'    => 'Tiếng Anh',
     'Japanese'   => 'Tiếng Nhật',
     'Vietnamese' => 'Tiếng Việt',
+    'share'      => 'Chia sẻ',
+    'ShareFriend' => 'Chia sẻ với bạn bè của bạn danh sách mua hàng của bạn',
 
     // Product Index
     'ShoppingList' => 'DANH SÁCH MUA HÀNG',
     'all'          => 'Tất cả',
     'search'       => 'Tìm kiếm',
     'AddProduct'   => 'Thêm sản phẩm',
+    'print'        => 'In danh sách',
     'image'        => 'Hình ảnh',
     'ProductName'  => 'Tên sản phẩm',
     'description'  => 'Mô tả sản phẩm',
     'category'     => 'Danh mục sản phẩm',
     'edit'         => 'Chỉnh sửa',
     'delete'       => 'Xóa',
+    'WannaDelete'  => 'Bạn chắc chắn muốn xóa?',
     'msgProduct'   => 'Không có sản phẩm nào',
     'completed'    => 'Hoàn thành',
     'DeleteAll'    => 'Xóa đã chọn',
     'TotalProduct' => 'Tổng sản phẩm đã chọn',
     'undo'         => 'Hoàn tác',
-    'msgTotalProduct'  => 'Chưa có sản phẩm nào được tìm thấy hoặc mua', 
+    'msgTotalProduct' => 'Chưa có sản phẩm nào được tìm thấy hoặc mua', 
 
     // Share Mail 
     'ShareMail'  => 'Nhập Gmail bạn muốn chia sẻ',
@@ -45,8 +49,8 @@ return [
     'choose'     => 'chọn',
 
     // Edit Product
-    'UpdateProduct'  => 'CẬP NHẬT SẢN PHẨM',
-    'update'         => 'Cập nhật',
+    'UpdateProduct' => 'CẬP NHẬT SẢN PHẨM',
+    'update'        => 'Cập nhật',
 
     // Category
     'CategoryName'  => 'Tên danh mục',
@@ -58,18 +62,18 @@ return [
     'username' => 'Tài khoản',
     'password' => 'Mật khẩu',
     'forgot'   => 'Quên mật khẩu?',
-    'nameIsRequired'   => 'Vui lòng nhập họ tên',
-    'emailIsRequired'  => 'Vui lòng nhập Email',
+    'nameIsRequired'  => 'Vui lòng nhập họ tên',
+    'emailIsRequired' => 'Vui lòng nhập Email',
     'correctMail'     => 'Vui lòng nhập đúng kiểu Email',
     'welcome'         => 'Chào mừng bạn đến với trình quản lý công việc của mình!',
 
     //Xác Nhận Qua Gmail
-    'ConfirmGmail'      => 'Xác nhận Gmail',
-    'SendConfirmation'  => 'Gửi xác nhận?',
-    'CreateAccount'     => 'Tạo 1 tài khoản mới',
-    'fullname'          => 'Họ và tên',
-    'Re_EnterPassword'  => 'Nhập lại mật khẩu',
-    'back'              => 'Trở lại',
+    'ConfirmGmail'     => 'Xác nhận Gmail',
+    'SendConfirmation' => 'Gửi xác nhận?',
+    'CreateAccount'    => 'Tạo 1 tài khoản mới',
+    'fullname'         => 'Họ và tên',
+    'Re_EnterPassword' => 'Nhập lại mật khẩu',
+    'back'             => 'Trở lại',
 
     // Information.blade
     'YourInfor'       => 'Thông tin của bạn',

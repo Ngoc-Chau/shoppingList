@@ -57,17 +57,23 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-2" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">@lang('lang.language')</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/en')}}">
-                                    <img src="https://img.icons8.com/color/32/000000/great-britain-circular.png"/>
-                                    @lang('lang.English')</a>
+                                <li> 
+                                    <a href="{{url('lang/en')}}">
+                                        <img src="https://img.icons8.com/color/32/000000/great-britain-circular.png"/> 
+                                        @lang('lang.English')
+                                    </a>
                                 </li>
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/ja')}}">
-                                    <img src="https://img.icons8.com/color/32/000000/japan-circular.png"/>
-                                    @lang('lang.Japanese')</a>
+                                <li>
+                                    <a href="{{url('lang/ja')}}">
+                                        <img src="https://img.icons8.com/color/32/000000/japan-circular.png"/>
+                                        @lang('lang.Japanese')
+                                    </a>
                                 </li>
-                                <li><a class="dropdown-item ml-1 mb-1" href="{{url('lang/vi')}}">
-                                    <img src="https://img.icons8.com/color/32/000000/vietnam-circular.png"/>  
-                                    @lang('lang.Vietnamese')</a>
+                                <li>
+                                    <a href="{{url('lang/vi')}}">
+                                        <img src="https://img.icons8.com/color/32/000000/vietnam-circular.png"/>
+                                        @lang('lang.Vietnamese')
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -124,12 +130,12 @@
             @if(Auth::check())
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="z-index: 0">
                     <li><a href="{{ route('auth.edit') }}" class="nav-link px-2 link-dark">{{ Auth::user()->name }}</a></li>
-                    <li><a href="{{ route('auth.logout') }}" class="btn btn-outline-primary me-2"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                     <li><a href="{{ route('auth.logout') }}" class="btn btn-outline-primary me-2"><i class="fa fa-btn fa-sign-out"></i>@lang('lang.logout')</a></li>
                 </ul>
             @else
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route('auth.login') }}" class="btn btn-outline-primary me-2">Đăng nhập</a></li>
-                    <li><a href="{{ route('auth.register') }}" class="btn btn-link">Đăng kí</a></li>
+                    <li><a href="{{ route('auth.login') }}" class="btn btn-outline-primary me-2">@lang('lang.login')</a></li>
+                    <li><a href="{{ route('auth.register') }}" class="btn btn-link">@lang('lang.register')</a></li>
                 </ul>
             @endif
         </div>
